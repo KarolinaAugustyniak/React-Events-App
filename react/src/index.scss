@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;600&display=swap');
+
+$bg: #1f1e27;
+$ocean: #3fc0c9;
+
+html,
+body {
+    margin: 0;
+    background-color: $bg;
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+
+.btn {
+    display: flex;
+    text-align: center;
+    padding: 12px 32px;
+    width: fit-content;
+    text-decoration: none;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 24px;
+    transition: 0.3s;
+
+    &--ocean {
+        background-color: $ocean;
+        box-shadow: 0px 0px 16px $ocean;
+        margin-left: auto;
+
+        &:hover {
+            box-shadow: 0px 0px 24px $ocean;
+        }
+    }
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;
+    width: 100%;
+}
+
+.event {
+    width: calc(100% / 4 - 23px);
+    border-radius: 6px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.109);
+    cursor: pointer;
+
+    &::after {
+        display: block;
+        content: "";
+        bottom: -1px;
+        background: linear-gradient(to bottom, #4a466208, $bg);
+        width: calc(100% + 2px);
+        left: -1px;
+        height: 50%;
+        position: absolute;
+        z-index: 4;
+    }
+
+    &__content {
+        padding: 20px;
+        background: linear-gradient(180deg, rgba(158, 8, 208, 0.079) 18.75%, rgba(72, 49, 157, 0) 100%);
+        margin-top: -4px;
+        position: relative;
+        z-index: 5;
+    }
+
+    &__classifications {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    &__genre {
+        font-size: 14px;
+        background-color: #ffffff0d;
+        padding: 5px 10px;
+        color: #fffb;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+    }
+
+    &__info {
+        display: flex;
+        margin-bottom: 9px;
+        justify-content: space-between;
+        gap: 15px;
+        flex-wrap: wrap;
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.61);
+    }
+
+    &__img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 6px 6px 0 0;
+    }
+
+    &__title {
+        margin-bottom: 14px;
+    }
+
+}
+
+.search {
+    padding: 14px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    margin-left: auto;
+    margin-bottom: 50px;
+    margin-top: 30px;
+    max-width: 330px;
+    width: 100%;
+    display: block;
+}
