@@ -1,35 +1,36 @@
 import React from "react";
 import styled from "styled-components";
+import { Outlet, Link } from "react-router-dom";
 
 const Event = (props) => {
-    const { name, images, classifications, _embedded, dates, url } =
+    const { id, name, images, classifications, _embedded, dates, url } =
         props.event;
 
     return (
-        <div className="event">
+        <Link to={"/event/" + id} className="card">
             <img
-                className="event__img"
+                className="card__img"
                 height="182"
                 width="324"
                 src={images[1].url}
                 alt={name}
             />
-            <div className="event__content">
-                <div className="event__info">
+            <div className="card__content">
+                <div className="card__info">
                     <p>{dates.start.localDate}</p>
                     <p>
                         {_embedded.venues[0].country.name},{" "}
                         {_embedded.venues[0].city.name}
                     </p>
                 </div>
-                <h3 className="event__title">{name}</h3>
-                <div className="event__classifications">
-                    <p className="event__genre">
+                <h3 className="card__title">{name}</h3>
+                <div className="card__classifications">
+                    <p className="card__genre">
                         {classifications[0].segment.name}
                     </p>
 
                     {classifications.map((classification, index) => (
-                        <p key={index} className="event__genre">
+                        <p key={index} className="card__genre">
                             {classification.genre && classification.genre.name
                                 ? classification.genre.name + ", "
                                 : ""}
@@ -40,11 +41,11 @@ const Event = (props) => {
                         </p>
                     ))}
                 </div>
-                <a href={url} className="btn btn--ocean" target="_blank">
+                <a href={url} className="btn btn--teal" target="_blank">
                     More
                 </a>
             </div>
-        </div>
+        </Link>
     );
 };
 
