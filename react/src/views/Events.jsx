@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Event from "../components/Event";
+import Layout from "../components/Layout";
 
 export default function Events() {
     const [events, setEvents] = useState([]);
@@ -29,7 +30,7 @@ export default function Events() {
         .map((event) => <Event key={event.id} event={event} />);
 
     return (
-        <div className="container">
+        <Layout>
             <form>
                 <label>
                     <input
@@ -42,7 +43,7 @@ export default function Events() {
                 </label>
             </form>
             <Wrapper>{eventList}</Wrapper>
-        </div>
+        </Layout>
     );
 }
 

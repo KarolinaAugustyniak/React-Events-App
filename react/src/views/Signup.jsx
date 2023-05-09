@@ -3,6 +3,9 @@ import Aside from "../components/Aside";
 import { Link } from "react-router-dom";
 import axiosClient from "../axios-client.js";
 import { useStateContext } from "../contexts/ContextProvider";
+import Layout from "../components/Layout";
+import Illustration from "../assets/img/login_illustration.png";
+import Arrow from "../assets/img/Arrow_right.svg";
 
 export default function Signup() {
     const nameRef = useRef();
@@ -39,41 +42,62 @@ export default function Signup() {
     };
     console.log(info);
     return (
-        <div className="wrapper">
-            <Aside />
-            <div className="form">
-                <form onSubmit={onSubmit}>
-                    <h1 className="title title--40">Sign up</h1>
-                    {info && typeof info === "object" && (
-                        <div className="form__info form__info--error">
-                            {Object.values(info).map((message, index) => (
-                                <p key={index}>{message}</p>
-                            ))}
-                        </div>
-                    )}
+        <Layout>
+            <div className="main__wrapper">
+                <div className="form">
+                    <form onSubmit={onSubmit}>
+                        <h1 className="form__title title title--40">Sign up</h1>
+                        {info && typeof info === "object" && (
+                            <div className="form__info form__info--error">
+                                {Object.values(info).map((message, index) => (
+                                    <p key={index}>{message}</p>
+                                ))}
+                            </div>
+                        )}
 
-                    {info && typeof info === "string" && (
-                        <p className="form__info form__info--success">{info}</p>
-                    )}
-                    <input ref={nameRef} type="text" placeholder="Full name" />
-                    <input ref={emailRef} type="email" placeholder="E-mail" />
-                    <input
-                        ref={passwordRef}
-                        type="password"
-                        placeholder="Password"
-                    />
-                    <input
-                        ref={passwordConfirmationRef}
-                        type="password"
-                        placeholder="Confirm Password"
-                    />
-                    <button className="form__btn btn btn--teal">Login</button>
-                    <p className="form__message">
-                        Already have an acount?{" "}
-                        <Link to="/signup"> Login here</Link>
-                    </p>
-                </form>
+                        {info && typeof info === "string" && (
+                            <p className="form__info form__info--success">
+                                {info}
+                            </p>
+                        )}
+                        <input
+                            ref={nameRef}
+                            type="text"
+                            placeholder="Full name"
+                            className="form__input"
+                        />
+                        <input
+                            ref={emailRef}
+                            type="email"
+                            placeholder="E-mail"
+                            className="form__input"
+                        />
+                        <input
+                            ref={passwordRef}
+                            type="password"
+                            placeholder="Password"
+                            className="form__input"
+                        />
+                        <input
+                            ref={passwordConfirmationRef}
+                            type="password"
+                            placeholder="Confirm Password"
+                            className="form__input"
+                        />
+                        <button className="form__btn btn btn--teal">
+                            Sign up
+                            <img src={Arrow} />
+                        </button>
+                        <p className="form__message">
+                            Already have an acount?{" "}
+                            <Link to="/login" className="form__link">
+                                Login here
+                            </Link>
+                        </p>
+                    </form>
+                </div>
+                <img src={Illustration} />
             </div>
-        </div>
+        </Layout>
     );
 }

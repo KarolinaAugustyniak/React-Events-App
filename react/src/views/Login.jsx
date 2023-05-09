@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client.js";
 import Aside from "../components/Aside";
+import Layout from "../components/Layout";
+import Illustration from "../assets/img/login_illustration.png";
 
 export default function Login() {
     const emailRef = useRef();
@@ -40,11 +42,10 @@ export default function Login() {
             });
     };
     return (
-        <div className="wrapper">
-            <Aside />
-            <div className="form">
-                <form onSubmit={onSubmit}>
-                    <h1 className="title title--40">Login</h1>
+        <Layout>
+            <div className="main__wrapper">
+                <form onSubmit={onSubmit} className="form">
+                    <h1 className="form__title title title--40">Login</h1>
                     {info && (
                         <div className="form__info form__info--error">
                             {Object.values(info).map((message, index) => (
@@ -52,19 +53,28 @@ export default function Login() {
                             ))}
                         </div>
                     )}
-                    <input ref={emailRef} type="email" placeholder="E-mail" />
+                    <input
+                        ref={emailRef}
+                        type="email"
+                        className="form__input"
+                        placeholder="E-mail"
+                    />
                     <input
                         ref={passwordRef}
                         type="password"
                         placeholder="Password"
+                        className="form__input"
                     />
                     <button className="form__btn btn btn--teal">Login</button>
                     <p className="form__message">
                         Don’t have an acount?{" "}
-                        <Link to="/signup"> Register here</Link>
+                        <Link to="/signup" className="form__link">
+                            Register here
+                        </Link>
                     </p>
                 </form>
+                <img src={Illustration} />
             </div>
-        </div>
+        </Layout>
     );
 }
