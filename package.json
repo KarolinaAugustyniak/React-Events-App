@@ -5,10 +5,14 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "axios": "^1.1.2",
+        "axios": "^1.4.0",
         "laravel-vite-plugin": "^0.7.2",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
         "vite": "^4.2.1"
+    },
+    "dependencies": {
+        "leaflet": "^1.9.3",
+        "react-leaflet": "^4.2.1"
     }
 }
