@@ -7,6 +7,10 @@ $purple: #6F6DD5;
 $error: #e11212;
 $success: #10bb7c;
 
+$purpleGradient: linear-gradient(96.58deg, #6F6DD5 16.36%, #B36DD4 124.79%);
+$tealGradient: linear-gradient(271.63deg, #95D4A7 1.79%, #95CCD4 93.68%);
+$pinkGradient: linear-gradient(92.86deg, #FAAA9F 23.89%, #FAC09F 104.01%);
+
 $fontFamily: 'Inter',
     sans-serif;
 
@@ -16,6 +20,7 @@ body {
     background-color: $bg;
     color: $font;
     font-family: $fontFamily;
+    scroll-behavior: smooth;
 }
 
 * {
@@ -119,9 +124,9 @@ p {
 
     &__genre {
         font-size: 14px;
-        padding: 5px 10px;
-
-        border-radius: 5px;
+        padding: 8px 10px;
+        background-color: #3fc0c91b;
+        border-radius: 4px;
     }
 
     &__info {
@@ -144,8 +149,16 @@ p {
 
     &__title {
         margin-bottom: 14px;
+        margin-top: 16px;
     }
 
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: flex-end;
+    }
 
 
 }
@@ -361,4 +374,49 @@ p {
     &__title {
         margin-top: 60px;
     }
+}
+
+.map {
+    height: 100%;
+
+    &__cluster {
+        background: $tealGradient;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: 14px;
+        padding-top: 5px;
+        font-family: $fontFamily;
+        color: #fff;
+        text-align: center;
+    }
+}
+
+.marker {
+    &__name {
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
+.price {
+    margin: 5px 0;
+    text-align: right;
+
+    &__range {
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    &__info {
+        font-size: 11px;
+        color: #b7b7b7;
+        font-weight: 300;
+    }
+}
+
+.MuiPagination-root {
+    margin: 40px auto;
+    width: fit-content;
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Outlet, Link } from "react-router-dom";
+import Price from "./Price";
 
 const Event = (props) => {
-    const { id, name, images, classifications, _embedded, dates, url } =
+    const { id, name, images, classifications, _embedded, dates, priceRanges } =
         props.event;
 
     return (
@@ -28,22 +29,16 @@ const Event = (props) => {
                     <p className="card__genre">
                         {classifications[0].segment.name}
                     </p>
-
-                    {classifications.map((classification, index) => (
-                        <p key={index} className="card__genre">
-                            {classification.genre && classification.genre.name
-                                ? classification.genre.name + ", "
-                                : ""}
-                            {classification.subGenre &&
-                            classification.subGenre.name
-                                ? classification.subGenre.name
-                                : ""}
-                        </p>
-                    ))}
+                    <p className="card__genre">
+                        {classifications[0].genre.name}
+                    </p>
                 </div>
-                <a href={url} className="btn btn--teal" target="_blank">
-                    More
-                </a>
+                <div className="card__wrapper">
+                    <button className="btn btn--teal" target="_blank">
+                        More
+                    </button>
+                    {priceRanges && <Price priceRanges={priceRanges} />}
+                </div>
             </div>
         </Link>
     );
