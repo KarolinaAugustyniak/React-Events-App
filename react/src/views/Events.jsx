@@ -9,16 +9,17 @@ export default function Events() {
     let [page, setPage] = useState(1);
     const postsPerPage = 20;
     const [totalPages, setTotalPages] = useState(1);
+    let [sort, setSort] = useState("relevance,desc");
 
     useEffect(() => {
         getEvents();
-    }, [page]);
+    }, [page, sort]);
 
     const getEvents = async () => {
         const api = await fetch(
             `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=PL&size=${postsPerPage}&page=${
                 page - 1
-            }&apikey=${import.meta.env.VITE_TICKETMASTER_API_KEY}`
+            }&sort=${sort}&apikey=${import.meta.env.VITE_TICKETMASTER_API_KEY}`
         );
         const data = await api.json();
         console.log(data);
@@ -35,9 +36,28 @@ export default function Events() {
         window.scrollTo(0, 0);
     };
 
+    const handleSorting = (event) => {
+        setSort(event.target.value);
+    };
+
     return (
         // <Layout>
         <div className="container">
+            <div className="sort">
+                <p> Sort by</p>
+                <select
+                    name="sort"
+                    onChange={handleSorting}
+                    defaultValue={sort}
+                    className="sort__select"
+                >
+                    <option value="relevance,desc">Default</option>
+                    <option value="name,asc">Name ascending</option>
+                    <option value="name,desc">Name descending</option>
+                    <option value="date,asc">Date ascending</option>
+                    <option value="date,desc">Date descending</option>
+                </select>
+            </div>
             <Wrapper>{eventList}</Wrapper>
             <Pagination
                 count={totalPages}

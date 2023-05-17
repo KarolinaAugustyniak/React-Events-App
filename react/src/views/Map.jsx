@@ -35,7 +35,9 @@ export default function Map() {
     const getMarkers = () => {
         axios
             .get(
-                "https://app.ticketmaster.com/discovery/v2/events.json?countryCode=PL&size=200&apikey=MQG9xdWEIuZCAp9T7wf7UzyyQAJI0RLe"
+                `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=PL&size=200&apikey=${
+                    import.meta.env.VITE_TICKETMASTER_API_KEY
+                }`
             )
             .then((res) => {
                 console.log(res.data._embedded.events);
@@ -47,7 +49,6 @@ export default function Map() {
     };
 
     const position = [52.240004, 21.022993];
-    console.log(markers);
     return (
         <Layout>
             <MapContainer
