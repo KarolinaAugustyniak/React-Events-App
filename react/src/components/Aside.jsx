@@ -22,11 +22,11 @@ export default function Aside() {
         });
     };
 
-    useEffect(() => {
-        axiosClient.get("/user").then(({ data }) => {
-            setUser(data);
-        });
-    });
+    // useEffect(() => {
+    //     axiosClient.get("/user").then(({ data }) => {
+    //         setUser(data);
+    //     });
+    // });
 
     return (
         <aside className="aside">
