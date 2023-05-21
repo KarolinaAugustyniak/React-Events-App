@@ -10,6 +10,7 @@ $success: #10bb7c;
 $purpleGradient: linear-gradient(96.58deg, #6F6DD5 16.36%, #B36DD4 124.79%);
 $tealGradient: linear-gradient(271.63deg, #95D4A7 1.79%, #95CCD4 93.68%);
 $pinkGradient: linear-gradient(92.86deg, #FAAA9F 23.89%, #FAC09F 104.01%);
+$yellowGradient: linear-gradient(273.53deg, #FFEAB3 1.56%, #EECEB1 99.1%);
 
 $fontFamily: 'Inter',
     sans-serif;
@@ -442,5 +443,67 @@ p {
         background-position-x: 100%;
         background-position-y: 5px;
         padding-right: 10px;
+    }
+}
+
+.categories {
+    display: flex;
+    gap: 24px;
+
+    &__box {
+        width: calc(100% / 4 - 18px);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        position: relative;
+
+        &:nth-child(1) {
+            background: $purpleGradient;
+
+            &::after {
+                opacity: 0.5;
+            }
+        }
+
+        &:nth-child(2) {
+            background: $pinkGradient;
+        }
+
+        &:nth-child(3) {
+            background: $tealGradient;
+        }
+
+        &:nth-child(4) {
+            background: $yellowGradient;
+        }
+
+        &::after {
+            display: block;
+            content: url(./assets/img/category-box-bg.png);
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 600;
+        padding-left: 10px;
+    }
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__img {
+        margin-top: -30px;
+        position: relative;
+        z-index: 4;
     }
 }

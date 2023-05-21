@@ -3,6 +3,12 @@ import styled from "styled-components";
 import Event from "../components/Event";
 import Layout from "../components/Layout";
 import Pagination from "@mui/material/Pagination";
+import CategoryBox from "../components/CategoryBox";
+
+import MusicImage from "../assets/img/undraw_compose_music.svg";
+import SportsImage from "../assets/img/undraw_home_run.svg";
+import ArtsImage from "../assets/img/undraw_making_art.svg";
+import OtherImage from "../assets/img/undraw_woman.svg";
 
 export default function Events() {
     const [events, setEvents] = useState([]);
@@ -10,18 +16,11 @@ export default function Events() {
     const postsPerPage = 20;
     const [totalPages, setTotalPages] = useState(1);
     let [sort, setSort] = useState("relevance,desc");
-<<<<<<< HEAD
     let [categories, setCategories] = useState([]);
 
     useEffect(() => {
         getEvents();
     }, [page, sort, categories]);
-=======
-
-    useEffect(() => {
-        getEvents();
-    }, [page, sort]);
->>>>>>> 7741983b165bc10cc83f5f61a8b782f7b8a3f0eb
 
     const getEvents = async () => {
         //load events from category
@@ -56,7 +55,6 @@ export default function Events() {
         setSort(event.target.value);
     };
 
-<<<<<<< HEAD
     const handleCategoryChange = (event) => {
         const { value, checked } = event.target;
         setPage(1);
@@ -76,42 +74,26 @@ export default function Events() {
         <Layout>
             <div className="container">
                 <div className="categories">
-                    <label className="categories__box">
-                        <p>Music</p>
-                        <input
-                            type="checkbox"
-                            name="category"
-                            value="music"
-                            onChange={handleCategoryChange}
-                        />
-                    </label>
-                    <label className="categories__box">
-                        <p>Sports</p>
-                        <input
-                            type="checkbox"
-                            name="category"
-                            value="sports"
-                            onChange={handleCategoryChange}
-                        />
-                    </label>
-                    <label className="categories__box">
-                        <p>Arts & Theater</p>
-                        <input
-                            type="checkbox"
-                            name="category"
-                            value="Arts & Theatre"
-                            onChange={handleCategoryChange}
-                        />
-                    </label>
-                    <label className="categories__box">
-                        <p>Other</p>
-                        <input
-                            type="checkbox"
-                            name="category"
-                            value="miscellaneous"
-                            onChange={handleCategoryChange}
-                        />
-                    </label>
+                    <CategoryBox
+                        label="Music"
+                        imgSrc={MusicImage}
+                        handleCategoryChange={handleCategoryChange}
+                    />
+                    <CategoryBox
+                        label="Sports"
+                        imgSrc={SportsImage}
+                        handleCategoryChange={handleCategoryChange}
+                    />
+                    <CategoryBox
+                        label="Arts & Theater"
+                        imgSrc={ArtsImage}
+                        handleCategoryChange={handleCategoryChange}
+                    />
+                    <CategoryBox
+                        label="Other"
+                        imgSrc={OtherImage}
+                        handleCategoryChange={handleCategoryChange}
+                    />
                 </div>
                 <div className="sort">
                     <p> Sort by</p>
@@ -139,35 +121,6 @@ export default function Events() {
                 )}
             </div>
         </Layout>
-=======
-    return (
-        // <Layout>
-        <div className="container">
-            <div className="sort">
-                <p> Sort by</p>
-                <select
-                    name="sort"
-                    onChange={handleSorting}
-                    defaultValue={sort}
-                    className="sort__select"
-                >
-                    <option value="relevance,desc">Default</option>
-                    <option value="name,asc">Name ascending</option>
-                    <option value="name,desc">Name descending</option>
-                    <option value="date,asc">Date ascending</option>
-                    <option value="date,desc">Date descending</option>
-                </select>
-            </div>
-            <Wrapper>{eventList}</Wrapper>
-            <Pagination
-                count={totalPages}
-                page={page}
-                onChange={handlePaginationChange}
-                shape="rounded"
-            />
-        </div>
-        // </Layout>
->>>>>>> 7741983b165bc10cc83f5f61a8b782f7b8a3f0eb
     );
 }
 
