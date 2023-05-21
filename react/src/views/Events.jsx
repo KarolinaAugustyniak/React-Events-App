@@ -32,7 +32,9 @@ export default function Events() {
         const api = await fetch(
             `https://app.ticketmaster.com/discovery/v2/events.json?&${
                 categoryString && `classificationName='${categoryString}'`
-            }&countryCode=PL&size=${postsPerPage}&page=${page - 1}&sort=${sort}&apikey=${import.meta.env.VITE_TICKETMASTER_API_KEY}`
+            }&countryCode=PL&size=${postsPerPage}&page=${page - 1}&sort=${sort}&apikey=${
+                import.meta.env.VITE_TICKETMASTER_API_KEY
+            }`
         );
         const data = await api.json();
         console.log(data);
@@ -62,7 +64,6 @@ export default function Events() {
         }
     };
 
-    console.log(categories);
     return (
         <Layout>
             <div className="container">
@@ -103,7 +104,9 @@ export default function Events() {
                     </select>
                 </div>
                 <Wrapper>{eventList.length ? eventList : "No results"}</Wrapper>
-                {events.length !== 0 && <Pagination count={totalPages} page={page} onChange={handlePaginationChange} shape="rounded" />}
+                {events.length !== 0 && (
+                    <Pagination count={totalPages} page={page} onChange={handlePaginationChange} shape="rounded" />
+                )}
             </div>
         </Layout>
     );

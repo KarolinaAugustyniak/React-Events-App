@@ -2,11 +2,7 @@ import React, { useState } from "react";
 
 const CategoryBox = ({ label, imgSrc, handleCategoryChange, isActive }) => {
     return (
-        <label
-            className={`categories__box ${
-                isActive ? "" : "categories__box--inactive"
-            }`}
-        >
+        <label className={`categories__box ${isActive ? "" : "categories__box--inactive"}`}>
             <p className="categories__title ">{label}</p>
             <input
                 type="checkbox"
