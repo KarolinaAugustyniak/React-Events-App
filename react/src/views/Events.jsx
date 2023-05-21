@@ -32,9 +32,7 @@ export default function Events() {
         const api = await fetch(
             `https://app.ticketmaster.com/discovery/v2/events.json?&${
                 categoryString && `classificationName='${categoryString}'`
-            }&countryCode=PL&size=${postsPerPage}&page=${
-                page - 1
-            }&sort=${sort}&apikey=${import.meta.env.VITE_TICKETMASTER_API_KEY}`
+            }&countryCode=PL&size=${postsPerPage}&page=${page - 1}&sort=${sort}&apikey=${import.meta.env.VITE_TICKETMASTER_API_KEY}`
         );
         const data = await api.json();
         console.log(data);
@@ -42,67 +40,61 @@ export default function Events() {
         data._embedded && setEvents(data._embedded.events);
     };
 
-    const eventList = events.map((event) => (
-        <Event key={event.id} event={event} />
-    ));
+    const eventList = events.map(event => <Event key={event.id} event={event} />);
 
     const handlePaginationChange = (event, value) => {
         setPage(value);
         window.scrollTo(0, 0);
     };
 
-    const handleSorting = (event) => {
+    const handleSorting = event => {
         setSort(event.target.value);
     };
 
-    const handleCategoryChange = (event) => {
+    const handleCategoryChange = event => {
         const { value, checked } = event.target;
         setPage(1);
 
         if (checked) {
-            setCategories((prevCategories) => [...prevCategories, value]);
+            setCategories(prevCategories => [...prevCategories, value]);
         } else {
-            setCategories((prevCategories) =>
-                prevCategories.filter((category) => category !== value)
-            );
+            setCategories(prevCategories => prevCategories.filter(category => category !== value));
         }
     };
 
     console.log(categories);
-
     return (
         <Layout>
             <div className="container">
-                <div className="categories">
+                <div className="categories ">
                     <CategoryBox
                         label="Music"
                         imgSrc={MusicImage}
                         handleCategoryChange={handleCategoryChange}
+                        isActive={categories.length == 0 || categories.includes("Music")}
                     />
                     <CategoryBox
                         label="Sports"
                         imgSrc={SportsImage}
                         handleCategoryChange={handleCategoryChange}
+                        isActive={categories.length == 0 || categories.includes("Sports")}
                     />
                     <CategoryBox
                         label="Arts & Theater"
                         imgSrc={ArtsImage}
                         handleCategoryChange={handleCategoryChange}
+                        isActive={categories.length == 0 || categories.includes("Arts & Theater")}
                     />
                     <CategoryBox
                         label="Other"
                         imgSrc={OtherImage}
                         handleCategoryChange={handleCategoryChange}
+                        isActive={categories.length == 0 || categories.includes("Other")}
                     />
                 </div>
                 <div className="sort">
                     <p> Sort by</p>
-                    <select
-                        name="sort"
-                        onChange={handleSorting}
-                        defaultValue={sort}
-                        className="sort__select"
-                    >
+                    <select name="sort" onChange={handleSorting} defaultValue={sort} className="sort__select">
                         <option value="relevance,desc">Default</option>
                         <option value="name,asc">Name ascending</option>
                         <option value="name,desc">Name descending</option>
@@ -111,14 +103,7 @@ export default function Events() {
                     </select>
                 </div>
                 <Wrapper>{eventList.length ? eventList : "No results"}</Wrapper>
-                {events.length !== 0 && (
-                    <Pagination
-                        count={totalPages}
-                        page={page}
-                        onChange={handlePaginationChange}
-                        shape="rounded"
-                    />
-                )}
+                {events.length !== 0 && <Pagination count={totalPages} page={page} onChange={handlePaginationChange} shape="rounded" />}
             </div>
         </Layout>
     );
