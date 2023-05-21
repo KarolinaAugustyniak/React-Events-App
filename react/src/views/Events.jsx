@@ -10,11 +10,18 @@ export default function Events() {
     const postsPerPage = 20;
     const [totalPages, setTotalPages] = useState(1);
     let [sort, setSort] = useState("relevance,desc");
+<<<<<<< HEAD
     let [categories, setCategories] = useState([]);
 
     useEffect(() => {
         getEvents();
     }, [page, sort, categories]);
+=======
+
+    useEffect(() => {
+        getEvents();
+    }, [page, sort]);
+>>>>>>> 7741983b165bc10cc83f5f61a8b782f7b8a3f0eb
 
     const getEvents = async () => {
         //load events from category
@@ -49,6 +56,7 @@ export default function Events() {
         setSort(event.target.value);
     };
 
+<<<<<<< HEAD
     const handleCategoryChange = (event) => {
         const { value, checked } = event.target;
         setPage(1);
@@ -131,6 +139,35 @@ export default function Events() {
                 )}
             </div>
         </Layout>
+=======
+    return (
+        // <Layout>
+        <div className="container">
+            <div className="sort">
+                <p> Sort by</p>
+                <select
+                    name="sort"
+                    onChange={handleSorting}
+                    defaultValue={sort}
+                    className="sort__select"
+                >
+                    <option value="relevance,desc">Default</option>
+                    <option value="name,asc">Name ascending</option>
+                    <option value="name,desc">Name descending</option>
+                    <option value="date,asc">Date ascending</option>
+                    <option value="date,desc">Date descending</option>
+                </select>
+            </div>
+            <Wrapper>{eventList}</Wrapper>
+            <Pagination
+                count={totalPages}
+                page={page}
+                onChange={handlePaginationChange}
+                shape="rounded"
+            />
+        </div>
+        // </Layout>
+>>>>>>> 7741983b165bc10cc83f5f61a8b782f7b8a3f0eb
     );
 }
 
