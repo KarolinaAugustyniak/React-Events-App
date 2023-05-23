@@ -12,6 +12,12 @@ $tealGradient: linear-gradient(271.63deg, #95D4A7 1.79%, #95CCD4 93.68%);
 $pinkGradient: linear-gradient(92.86deg, #FAAA9F 23.89%, #FAC09F 104.01%);
 $yellowGradient: linear-gradient(273.53deg, #FFEAB3 1.56%, #EECEB1 99.1%);
 
+$box-shadow: 8px 8px 20px 0px rgba(85, 117, 169, 0.15);
+
+//z-index
+$menuButton: 50;
+$aside: 40;
+
 $fontFamily: 'Inter',
     sans-serif;
 
@@ -90,23 +96,35 @@ p {
     }
 }
 
-.container {
+.events {
     margin-left: auto;
     margin-right: auto;
     max-width: 1400px;
     width: 100%;
     padding-left: 30px;
     padding-right: 30px;
+
+    &__wrapper {
+        display: flex;
+        row-gap: 50px;
+        column-gap: 24px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
 }
 
 .card {
-    width: calc(100% / 4 - 23px);
+    width: calc(100% / 4 - 18px);
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.109);
     cursor: pointer;
     text-decoration: none;
     color: $font;
+    transition: 0.3s ease-in-out;
+    border-radius: 10px;
 
+    &:hover {
+        box-shadow: $box-shadow;
+    }
 
     &__content {
         padding: 20px;
@@ -199,6 +217,8 @@ p {
     height: 100vh;
     padding-top: 40px;
     padding-bottom: 60px;
+    padding-left: 15px;
+    padding-right: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -206,6 +226,7 @@ p {
     position: sticky;
     overflow: auto;
     top: 0;
+    z-index: $aside;
 
     &__logo {
         display: block;
@@ -254,6 +275,40 @@ p {
     }
 }
 
+@media(max-width:1200px) {
+    .aside {
+        // display: none;
+        position: fixed;
+        padding-top: 100px;
+        width: 100%;
+        transform: translate(-100%, 0);
+        transition: 0.2s;
+
+        &--active {
+            transform: translate(0%, 0);
+        }
+    }
+}
+
+.menu {
+    display: none;
+}
+
+@media(max-width:1200px) {
+    .menu {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        display: block;
+        z-index: $menuButton;
+        background: $pinkGradient;
+        padding: 14px;
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: $box-shadow;
+    }
+}
+
 .account {
     text-align: center;
     margin-bottom: 50px;
@@ -297,6 +352,35 @@ p {
         height: 100%;
         gap: 40px;
         justify-content: center;
+    }
+}
+
+@media(max-width:1200px) {
+    .main {
+        width: 100%;
+
+        &::after {
+            display: block;
+            content: "";
+            background-color: #00000067;
+            visibility: hidden;
+            z-index: 30;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            transition: 0.2s;
+        }
+
+        &--overlay {
+            &::after {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
     }
 }
 
@@ -463,6 +547,10 @@ p {
         position: relative;
         transition: 0.3s;
 
+        &:hover {
+            box-shadow: $box-shadow;
+        }
+
         &--inactive {
             opacity: 0.3;
         }
@@ -489,10 +577,17 @@ p {
 
         &::after {
             display: block;
-            content: url(./assets/img/category-box-bg.png);
+            content: "";
+            background-image: url(./assets/img/category-box-bg.png);
+            background-size: cover;
             position: absolute;
             top: 0;
             right: 0;
+            border-radius: 10px;
+            height: 100%;
+            left: 0;
+            bottom: 0;
+
         }
 
     }
@@ -511,5 +606,6 @@ p {
         margin-top: -30px;
         position: relative;
         z-index: 4;
+        max-width: 60%;
     }
 }

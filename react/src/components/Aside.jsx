@@ -10,10 +10,10 @@ import Logout from "../assets/img/logout.svg";
 import Login from "../assets/img/login.svg";
 import axiosClient from "../axios-client.js";
 
-export default function Aside() {
+export default function Aside({ className }) {
     const { user, token, setUser, setToken } = useStateContext();
 
-    const onLogout = (ev) => {
+    const onLogout = ev => {
         ev.preventDefault();
 
         axiosClient.post("/logout").then(() => {
@@ -29,7 +29,7 @@ export default function Aside() {
     // });
 
     return (
-        <aside className="aside">
+        <aside className={`aside ${className}`}>
             <div className="aside__top">
                 <Link to="/" className="aside__logo">
                     <img src={Logo} />
@@ -52,10 +52,7 @@ export default function Aside() {
                 )}
             </div>
             <nav className="aside__nav">
-                <Link
-                    to="/dashboard"
-                    className="aside__link aside__link--active"
-                >
+                <Link to="/dashboard" className="aside__link aside__link--active">
                     <img src={HomeIcon} />
                     Dashboard
                 </Link>

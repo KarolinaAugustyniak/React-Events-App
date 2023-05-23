@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import Event from "../components/Event";
 import Layout from "../components/Layout";
 import Pagination from "@mui/material/Pagination";
@@ -66,7 +65,7 @@ export default function Events() {
 
     return (
         <Layout>
-            <div className="container">
+            <div className="events">
                 <div className="categories ">
                     <CategoryBox
                         label="Music"
@@ -103,7 +102,7 @@ export default function Events() {
                         <option value="date,desc">Date descending</option>
                     </select>
                 </div>
-                <Wrapper>{eventList.length ? eventList : "No results"}</Wrapper>
+                <div className="events__wrapper">{eventList.length ? eventList : "No results"}</div>
                 {events.length !== 0 && (
                     <Pagination count={totalPages} page={page} onChange={handlePaginationChange} shape="rounded" />
                 )}
@@ -111,10 +110,3 @@ export default function Events() {
         </Layout>
     );
 }
-
-const Wrapper = styled.div`
-    display: flex;
-    row-gap: 50px;
-    column-gap: 30px;
-    flex-wrap: wrap;
-`;
