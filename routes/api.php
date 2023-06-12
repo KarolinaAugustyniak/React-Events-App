@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\FavoriteEventsController;
+use App\Models\FavoriteEvents;
+use App\Http\Resources\FavoriteEventsResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,13 +19,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//login functionality
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 });
-
-
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
+
+//favorites events
+Route::post('/favorite-events', [FavoriteEventsController::class, 'store']);
+Route::delete('/favorite-events/{userId}/{eventId}',  [FavoriteEventsController::class, 'destroy']);
+
+// Route::delete('/favorite-events/{id}', [FavoriteEventsController::class, 'destroy']);
+// Route::get('/favorite-events', [FavoriteEventsController::class, 'getFavoriteEvents']);

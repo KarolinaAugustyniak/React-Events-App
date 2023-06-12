@@ -5,42 +5,47 @@ import Events from "./views/Events.jsx";
 import Dashboard from "./views/Dashboard.jsx";
 import NotFound from "./views/NotFound.jsx";
 import EventView from "./views/EventView.jsx";
+import Account from "./views/Account.jsx";
 import Map from "./views/Map.jsx";
 import Settings from "./views/Settings.jsx";
 
 const router = createBrowserRouter([
     {
         path: "/login",
-        element: <Login />,
+        element: <Login />
     },
     {
         path: "/signup",
-        element: <Signup />,
+        element: <Signup />
     },
     {
-        path: "/events",
-        element: <Events />,
+        path: "/",
+        element: <Events />
+    },
+    {
+        path: "/account",
+        element: <Account />
     },
     {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <Dashboard />
     },
     {
         path: "/map",
-        element: <Map />,
+        element: <Map />
     },
     {
         path: "/settings",
-        element: <Settings />,
+        element: <Settings />
     },
     {
         path: "*",
-        element: <NotFound />,
+        element: <NotFound />
     },
     {
         path: "event/:eventID",
-        element: <EventView />,
-    },
+        element: <EventView />
+    }
 ]);
 
 export default router;

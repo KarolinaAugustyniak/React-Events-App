@@ -1,17 +1,26 @@
-import { useEffect, useState } from "react";
+import { React, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import React from "react";
 import Layout from "../components/Layout";
+import { useStateContext } from "../contexts/ContextProvider";
+import axiosClient from "../axios-client";
+import FavoriteButton from "../components/FavoriteButton";
 
 function EventView() {
     let params = useParams();
     const [details, setDetails] = useState({});
+    const { user, token, setUser, setToken } = useStateContext();
+
+    useEffect(() => {
+        axiosClient.get("/user").then(({ data }) => {
+            setUser(data);
+        });
+    }, []);
 
     const fetchDetails = async () => {
         const data = await fetch(
-            `https://app.ticketmaster.com/discovery/v2/events/${
-                params.eventID
-            }.json?apikey=${import.meta.env.VITE_TICKETMASTER_API_KEY}`
+            `https://app.ticketmaster.com/discovery/v2/events/${params.eventID}.json?apikey=${
+                import.meta.env.VITE_TICKETMASTER_API_KEY
+            }`
         );
         const detailData = await data.json();
         setDetails(detailData);
@@ -21,11 +30,7 @@ function EventView() {
         fetchDetails();
     }, [params.eventID]);
 
-    console.log(details);
-
-    //cut seconds from time
-    // let startTime = details.dates.start.localTime;
-    // startTime = startTime.substring(0, startTime.length - 3);
+    // console.log(details);
 
     return (
         <Layout>
@@ -40,6 +45,7 @@ function EventView() {
                 <a href={details.url} className="btn btn--teal" target="_blank">
                     Get the tickets
                 </a>
+                <FavoriteButton eventId={params.eventID} userId={user.id} />
                 {/* <img src={details.seatmap.staticUrl} /> */}
             </div>
         </Layout>

@@ -22,11 +22,11 @@ export default function Aside({ className }) {
         });
     };
 
-    // useEffect(() => {
-    //     axiosClient.get("/user").then(({ data }) => {
-    //         setUser(data);
-    //     });
-    // });
+    useEffect(() => {
+        axiosClient.get("/user").then(({ data }) => {
+            setUser(data);
+        });
+    }, []);
 
     return (
         <aside className={`aside ${className}`}>
@@ -56,7 +56,7 @@ export default function Aside({ className }) {
                     <img src={HomeIcon} />
                     Dashboard
                 </Link>
-                <Link to="/events" className="aside__link">
+                <Link to="/" className="aside__link">
                     <img src={SettingsIcon} />
                     Events
                 </Link>
@@ -67,6 +67,10 @@ export default function Aside({ className }) {
                 <Link to="/settings" className="aside__link">
                     <img src={SettingsIcon} />
                     Settings
+                </Link>
+                <Link to="/account" className="aside__link">
+                    <img src={SettingsIcon} />
+                    Account
                 </Link>
             </nav>
             {token && (

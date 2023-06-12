@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import Aside from "../components/Aside";
 import { Link } from "react-router-dom";
 import axiosClient from "../axios-client.js";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -17,13 +16,13 @@ export default function Signup() {
 
     const { setUser, setToken } = useStateContext();
 
-    const onSubmit = (ev) => {
+    const onSubmit = ev => {
         ev.preventDefault();
         const payload = {
             name: nameRef.current.value,
             email: emailRef.current.value,
             password: passwordRef.current.value,
-            password_confirmation: passwordConfirmationRef.current.value,
+            password_confirmation: passwordConfirmationRef.current.value
         };
         axiosClient
             .post("/signup", payload)
@@ -32,7 +31,7 @@ export default function Signup() {
                 setToken(data.token);
                 setInfo(`Account was created succesfully`);
             })
-            .catch((err) => {
+            .catch(err => {
                 const response = err.response;
                 //validation error
                 if (response && response.status === 422) {
@@ -55,29 +54,10 @@ export default function Signup() {
                             </div>
                         )}
 
-                        {info && typeof info === "string" && (
-                            <p className="form__info form__info--success">
-                                {info}
-                            </p>
-                        )}
-                        <input
-                            ref={nameRef}
-                            type="text"
-                            placeholder="Full name"
-                            className="form__input"
-                        />
-                        <input
-                            ref={emailRef}
-                            type="email"
-                            placeholder="E-mail"
-                            className="form__input"
-                        />
-                        <input
-                            ref={passwordRef}
-                            type="password"
-                            placeholder="Password"
-                            className="form__input"
-                        />
+                        {info && typeof info === "string" && <p className="form__info form__info--success">{info}</p>}
+                        <input ref={nameRef} type="text" placeholder="Full name" className="form__input" />
+                        <input ref={emailRef} type="email" placeholder="E-mail" className="form__input" />
+                        <input ref={passwordRef} type="password" placeholder="Password" className="form__input" />
                         <input
                             ref={passwordConfirmationRef}
                             type="password"
@@ -96,7 +76,7 @@ export default function Signup() {
                         </p>
                     </form>
                 </div>
-                <img src={Illustration} />
+                <img src={Illustration} className="login-img" />
             </div>
         </Layout>
     );

@@ -3,14 +3,10 @@ import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import Event from "../components/Event";
-
 import PinIcon from "../assets/img/pin_duotone_line.svg";
 import { Icon, divIcon, point } from "leaflet";
 import Layout from "../components/Layout";
-
 import axios from "axios";
-import { Link } from "react-router-dom";
-import Price from "../components/Price";
 
 // create custom icon
 const customIcon = new Icon({

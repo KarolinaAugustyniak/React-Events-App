@@ -43,15 +43,18 @@ export default function Events() {
 
     const eventList = events.map(event => <Event key={event.id} event={event} />);
 
+    //pagination
     const handlePaginationChange = (event, value) => {
         setPage(value);
         window.scrollTo(0, 0);
     };
 
+    //sorting
     const handleSorting = event => {
         setSort(event.target.value);
     };
 
+    //filter by category
     const handleCategoryChange = event => {
         const { value, checked } = event.target;
         setPage(1);
