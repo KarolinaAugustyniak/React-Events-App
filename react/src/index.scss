@@ -70,6 +70,15 @@ p {
 .title {
     font-weight: 800;
 
+    &--24 {
+        font-size: 24px;
+    }
+
+    &--30 {
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
     &--40 {
         font-size: 40px;
     }
@@ -387,6 +396,10 @@ p {
                 opacity: 1;
             }
         }
+
+        &__wrapper {
+            margin-top: 30px;
+        }
     }
 }
 
@@ -394,7 +407,7 @@ p {
     background-color: #fff;
     max-width: 550px;
     width: 50%;
-    padding: 70px 3vw;
+    padding: 70px 50px;
     border-radius: 10px;
 
     &__title {
@@ -451,6 +464,22 @@ p {
         margin-bottom: 10px;
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+@media(max-width:900px) {
+    .form {
+        width: 100%;
+    }
+}
+
+.login-img {
+    max-width: 50%;
+}
+
+@media(max-width:900px) {
+    .login-img {
+        display: none;
     }
 }
 
@@ -703,4 +732,46 @@ p {
         }
     }
 
+}
+
+.favorite {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.dashboard {
+    display: flex;
+    gap: 40px;
+    margin-top: 30px;
+    justify-content: space-between;
+
+    &__left {
+        max-width: 655px;
+        width: 50%;
+    }
+}
+
+.events-cta {
+    color: #fff;
+    background-image: url(../src/assets/img/events-cta-bg.png), $purpleGradient;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 32px 41px;
+    display: flex;
+    gap: 40px;
+    border-radius: 10px;
+    margin-top: 35px;
+
+    &__text {
+        margin-top: 13px;
+        font-size: 14px;
+        line-height: 21px;
+        color: rgba(255, 255, 255, 0.83);
+        margin-bottom: 33px;
+    }
+
+    &__img {
+        margin-top: -65px;
+    }
 }

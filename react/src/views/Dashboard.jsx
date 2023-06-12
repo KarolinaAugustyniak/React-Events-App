@@ -2,6 +2,7 @@ import React from "react";
 import { useStateContext } from "../contexts/ContextProvider.jsx";
 import Layout from "../components/Layout";
 import { Navigate } from "react-router-dom";
+import EventsCta from "../components/EventsCta.jsx";
 
 export default function Dashboard() {
     const { user, token, setUser, setToken } = useStateContext();
@@ -15,14 +16,19 @@ export default function Dashboard() {
         weekday: "long",
         year: "numeric",
         month: "long",
-        day: "numeric",
+        day: "numeric"
     };
     const formattedDate = date.toLocaleDateString("en-US", options);
     return (
-        <Layout className="dashboard">
-            <div className="dashboard__left">
-                <p>Hello {user.name}</p>
-                <p>Today is {formattedDate}</p>
+        <Layout>
+            <div className="dashboard">
+                <div className="dashboard__left">
+                    <div className="dashboard__hello">
+                        <p className="title title--30">Hello {user.name},</p>
+                        <p>Today is {formattedDate}</p>
+                    </div>
+                    <EventsCta />
+                </div>
             </div>
         </Layout>
     );
