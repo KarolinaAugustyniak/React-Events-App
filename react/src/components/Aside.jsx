@@ -23,9 +23,11 @@ export default function Aside({ className }) {
     };
 
     useEffect(() => {
-        axiosClient.get("/user").then(({ data }) => {
-            setUser(data);
-        });
+        if (token) {
+            axiosClient.get("/user").then(({ data }) => {
+                setUser(data);
+            });
+        }
     }, []);
 
     return (
@@ -64,14 +66,14 @@ export default function Aside({ className }) {
                     <img src={MapIcon} />
                     Map
                 </Link>
-                <Link to="/settings" className="aside__link">
+                {/* <Link to="/settings" className="aside__link">
                     <img src={SettingsIcon} />
                     Settings
                 </Link>
                 <Link to="/account" className="aside__link">
                     <img src={SettingsIcon} />
                     Account
-                </Link>
+                </Link> */}
             </nav>
             {token && (
                 <a href="#" onClick={onLogout} className="aside__link">

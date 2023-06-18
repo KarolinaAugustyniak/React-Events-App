@@ -25,13 +25,16 @@ Route::middleware('auth:sanctum')->group(function(){
         return $request->user();
     });
     Route::post('/logout', [AuthController::class, 'logout']);
+
+   
+  
 });
+Route::get('/favorite-events/{userId}', [FavoriteEventsController::class, 'getFavoriteEvents']);
+
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 
-//favorites events
-Route::post('/favorite-events', [FavoriteEventsController::class, 'store']);
-Route::delete('/favorite-events/{userId}/{eventId}',  [FavoriteEventsController::class, 'destroy']);
-
-// Route::delete('/favorite-events/{id}', [FavoriteEventsController::class, 'destroy']);
-// Route::get('/favorite-events', [FavoriteEventsController::class, 'getFavoriteEvents']);
+ //favorites events
+    Route::post('/favorite-events', [FavoriteEventsController::class, 'store']);
+    Route::delete('/favorite-events/{userId}/{eventId}',  [FavoriteEventsController::class, 'destroy']);
+    Route::get('/favorite-event/{userId}/{eventId}', [FavoriteEventsController::class, 'getFavoriteStatus']);

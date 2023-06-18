@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, React } from "react";
 import Event from "../components/Event";
 import Layout from "../components/Layout";
 import Pagination from "@mui/material/Pagination";
@@ -12,7 +12,7 @@ import OtherImage from "../assets/img/undraw_woman.svg";
 export default function Events() {
     const [events, setEvents] = useState([]);
     let [page, setPage] = useState(1);
-    const postsPerPage = 20;
+    const postsPerPage = 24;
     const [totalPages, setTotalPages] = useState(1);
     let [sort, setSort] = useState("relevance,desc");
     let [categories, setCategories] = useState([]);

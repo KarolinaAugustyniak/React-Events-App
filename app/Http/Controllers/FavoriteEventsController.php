@@ -130,22 +130,20 @@ class FavoriteEventsController extends Controller
         }
     }
 
-    public function getFavoriteEvents()
+    public function getFavoriteEvents($userId)
     {
-        $user = Auth::user();
-        return $user->name;
+        $user = User::findOrFail($userId);
         $favoriteEvents = $user->favoriteEvents;
-
         return response()->json($favoriteEvents);
     }
 
-    public function getFavoriteStatus($userId, $eventId)
+   public function getFavoriteStatus($userId, $eventId)
     {
-        $user = User::findOrFail($userId);
-        $event = Event::findOrFail($eventId);
+        // Check if the favorite event exists in the database
+        $favoriteEvent = FavoriteEvents::where('user_id', $userId)
+            ->where('event_id', $eventId)
+            ->exists();
 
-        $isFavorite = $user->favoriteEvents()->where('event_id', $eventId)->exists();
-
-        return response()->json(['favorite' => $isFavorite]);
+        return $favoriteEvent;
     }
 }

@@ -3,6 +3,7 @@ import { useStateContext } from "../contexts/ContextProvider.jsx";
 import Layout from "../components/Layout";
 import { Navigate } from "react-router-dom";
 import EventsCta from "../components/EventsCta.jsx";
+import SavedEvents from "../components/SavedEvents.jsx";
 
 export default function Dashboard() {
     const { user, token, setUser, setToken } = useStateContext();
@@ -28,6 +29,7 @@ export default function Dashboard() {
                         <p>Today is {formattedDate}</p>
                     </div>
                     <EventsCta />
+                    <SavedEvents />
                 </div>
             </div>
         </Layout>

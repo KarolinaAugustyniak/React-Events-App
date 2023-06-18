@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client.js";
 import Layout from "../components/Layout";
@@ -13,6 +13,8 @@ export default function Login() {
     const [info, setInfo] = useState(null);
     const { setUser, setToken } = useStateContext();
 
+    const navigate = useNavigate();
+
     const onSubmit = ev => {
         ev.preventDefault();
         const payload = {
@@ -25,6 +27,7 @@ export default function Login() {
             .then(({ data }) => {
                 setUser(data.user);
                 setToken(data.token);
+                navigate("/dashboard");
             })
             .catch(err => {
                 const response = err.response;
@@ -38,6 +41,8 @@ export default function Login() {
                             email: [response.data.message]
                         });
                     }
+                } else {
+                    setInfo("Something went wrong. Try again later.");
                 }
             });
     };
@@ -48,9 +53,7 @@ export default function Login() {
                     <h1 className="form__title title title--40">Login</h1>
                     {info && (
                         <div className="form__info form__info--error">
-                            {Object.values(info).map((message, index) => (
-                                <p key={index}>{message}</p>
-                            ))}
+                            <p>{info}</p>
                         </div>
                     )}
                     <input ref={emailRef} type="email" className="form__input" placeholder="E-mail" />

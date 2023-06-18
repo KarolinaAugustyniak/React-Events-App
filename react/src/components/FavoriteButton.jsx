@@ -1,11 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Icon from "../assets/img/favorite_light.svg";
 import IconFilled from "../assets/img/favorite_filled.svg";
+import axios from "axios";
 
 export default function FavoriteButton(props) {
     const [errorMessage, setErrorMessage] = useState("");
     const [favorite, setFavorite] = useState(false);
     const { eventId, userId } = props;
+
+    useEffect(() => {
+        const fetchFavoriteStatus = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/api/favorite-event/${userId}/${eventId}`);
+                setFavorite(response.data);
+            } catch (error) {
+                console.error("Error fetching favorite status:", error);
+            }
+        };
+
+        fetchFavoriteStatus();
+    }, [userId]);
 
     const handleClick = () => {
         if (favorite) {
