@@ -2,13 +2,11 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useStateContext } from "../contexts/ContextProvider.jsx";
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/logo.svg";
-import SettingsIcon from "../assets/img/Setting_line_duotone_line.svg";
-import MapIcon from "../assets/img/Map_light.svg";
-import HomeIcon from "../assets/img/Home_light.svg";
 import GuestAvatar from "../assets/img/guestAvatar.svg";
 import Logout from "../assets/img/logout.svg";
 import Login from "../assets/img/login.svg";
 import axiosClient from "../axios-client.js";
+import AsideLinks from "./AsideLinks.jsx";
 
 export default function Aside({ className }) {
     const { user, token, setUser, setToken } = useStateContext();
@@ -39,7 +37,7 @@ export default function Aside({ className }) {
                 {token && (
                     <div className="account">
                         <p className="account__name">{user.name}</p>
-                        <p className="account__email">{user.email}</p>
+                        <p className="account__email">@{user.username}</p>
                     </div>
                 )}
 
@@ -53,28 +51,8 @@ export default function Aside({ className }) {
                     </div>
                 )}
             </div>
-            <nav className="aside__nav">
-                <Link to="/dashboard" className="aside__link aside__link--active">
-                    <img src={HomeIcon} />
-                    Dashboard
-                </Link>
-                <Link to="/" className="aside__link">
-                    <img src={SettingsIcon} />
-                    Events
-                </Link>
-                <Link to="/map" className="aside__link">
-                    <img src={MapIcon} />
-                    Map
-                </Link>
-                {/* <Link to="/settings" className="aside__link">
-                    <img src={SettingsIcon} />
-                    Settings
-                </Link>
-                <Link to="/account" className="aside__link">
-                    <img src={SettingsIcon} />
-                    Account
-                </Link> */}
-            </nav>
+            <AsideLinks />
+
             {token && (
                 <a href="#" onClick={onLogout} className="aside__link">
                     <img src={Logout} />

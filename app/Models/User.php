@@ -17,10 +17,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
+     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'profile_image',
+        'description',
+        'location',
     ];
 
     /**
@@ -46,5 +50,23 @@ class User extends Authenticatable
     {
         return $this->hasMany(FavoriteEvents::class);
     }
+
+    /**
+     * The friends of the user.
+    */
+    public function friends()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'user_id', 'friend_id');
+    }
+
+    /**
+     * The friend requests of the user.
+    */
+    public function friendRequests()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'friend_id', 'user_id')
+            ->wherePivot('status', 'pending');
+    }
+
 }
 

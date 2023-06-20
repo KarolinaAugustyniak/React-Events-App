@@ -8,6 +8,7 @@ import Arrow from "../assets/img/Arrow_right.svg";
 
 export default function Signup() {
     const nameRef = useRef();
+    const usernameRef = useRef();
     const emailRef = useRef();
     const passwordRef = useRef();
     const passwordConfirmationRef = useRef();
@@ -20,6 +21,7 @@ export default function Signup() {
         ev.preventDefault();
         const payload = {
             name: nameRef.current.value,
+            username: usernameRef.current.value,
             email: emailRef.current.value,
             password: passwordRef.current.value,
             password_confirmation: passwordConfirmationRef.current.value
@@ -39,7 +41,6 @@ export default function Signup() {
                 }
             });
     };
-    console.log(info);
     return (
         <Layout>
             <div className="main__wrapper">
@@ -56,6 +57,7 @@ export default function Signup() {
 
                         {info && typeof info === "string" && <p className="form__info form__info--success">{info}</p>}
                         <input ref={nameRef} type="text" placeholder="Full name" className="form__input" />
+                        <input ref={usernameRef} type="text" placeholder="Username" className="form__input" />
                         <input ref={emailRef} type="email" placeholder="E-mail" className="form__input" />
                         <input ref={passwordRef} type="password" placeholder="Password" className="form__input" />
                         <input

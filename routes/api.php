@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\FavoriteEventsController;
 use App\Models\FavoriteEvents;
 use App\Http\Resources\FavoriteEventsResource;
@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//login functionality
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/user', function (Request $request) {
         return $request->user();
@@ -27,14 +26,20 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout']);
 
    
-  
+    // Route::get('/favorite-events', [FavoriteEventsController::class, 'getFavoriteEvents']);
+
 });
-Route::get('/favorite-events/{userId}', [FavoriteEventsController::class, 'getFavoriteEvents']);
+
 
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 
  //favorites events
-    Route::post('/favorite-events', [FavoriteEventsController::class, 'store']);
-    Route::delete('/favorite-events/{userId}/{eventId}',  [FavoriteEventsController::class, 'destroy']);
-    Route::get('/favorite-event/{userId}/{eventId}', [FavoriteEventsController::class, 'getFavoriteStatus']);
+Route::post('/favorite-events', [FavoriteEventsController::class, 'store']);
+Route::delete('/favorite-events/{userId}/{eventId}',  [FavoriteEventsController::class, 'destroy']);
+Route::get('/favorite-event/{userId}/{eventId}', [FavoriteEventsController::class, 'getFavoriteStatus']);
+
+//friendship
+Route::post('/users/{user}/send-friend-request', 'FriendRequestController@sendFriendRequest')->name('friend-request.send');
+// Route::get('/user/{id}', 'UserController@show');
+Route::get('/user/{id}', [UserController::class, 'show']);
