@@ -7,7 +7,7 @@ export default function SavedEvents() {
     const { user, token, setUser, setToken } = useStateContext();
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/favorite-events/${user.id}`, {
+        fetch(`http://127.0.0.1:8000/api/favorite-events`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -20,12 +20,13 @@ export default function SavedEvents() {
                 return response.json();
             })
             .then(data => {
-                const eventIds = data.map(event => event.event_id);
+                const eventIds = data.map(event => event.event_id).slice(0, 3);
                 setEvents(eventIds);
-                console.log(data);
             })
             .catch(error => console.error(error));
     }, []);
+
+    console.log("list");
 
     return (
         <div className="upcoming">

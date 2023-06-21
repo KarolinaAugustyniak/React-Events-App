@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Layout from "../components/Layout";
 import { useParams } from "react-router-dom";
+import FriendRequestButton from "../components/FriendRequestButton";
 
 export default function UserProfile() {
     const { userId } = useParams();
@@ -33,6 +34,7 @@ export default function UserProfile() {
             <h1>User Profile</h1>
             <p>Name: {user.name}</p>
             <p>Username: {user.username}</p>
+            <FriendRequestButton userId={userId} />
         </Layout>
     );
 }

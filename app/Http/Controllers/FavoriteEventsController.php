@@ -96,20 +96,6 @@ class FavoriteEventsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function destroy($id)
-    // {
-    //    if(FavoriteEvents::where('id',$id)->exists()){
-    //         $favoriteEvents = FavoriteEvents::find($id);
-    //         $favoriteEvents->delete();
-    //         return response()->json([
-    //             'message'=>'Favorite event record deleted succesfully'
-    //         ], 200);
-    //     }else{
-    //         return response()->json([
-    //             'message'=>'Favorite event record not found'
-    //         ], 404);
-    //     }
-    // }
 
      public function destroy($userId, $eventId)
     {
@@ -130,12 +116,15 @@ class FavoriteEventsController extends Controller
         }
     }
 
-    public function getFavoriteEvents($userId)
-    {
-        $user = User::findOrFail($userId);
-        $favoriteEvents = $user->favoriteEvents;
-        return response()->json($favoriteEvents);
-    }
+    // public function getFavoriteEvents(Request $request)
+    // {
+    //     //   public function logout(Request $request){
+    //   //  $user = $request->user();
+    //     $user =Auth::user();
+    //   //  $user = User::findOrFail($userId);
+    //     $favoriteEvents = $user->favoriteEvents;
+    //     return response()->json($favoriteEvents);
+    // }
 
    public function getFavoriteStatus($userId, $eventId)
     {

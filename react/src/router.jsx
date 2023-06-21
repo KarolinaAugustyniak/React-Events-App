@@ -8,6 +8,7 @@ import EventView from "./views/EventView.jsx";
 import Account from "./views/Account.jsx";
 import Map from "./views/Map.jsx";
 import Settings from "./views/Settings.jsx";
+import UserProfile from "./views/UserProfile.jsx";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
     {
         path: "event/:eventID",
         element: <EventView />
+    },
+    {
+        path: "user/:userId",
+        element: <UserProfile />
     }
 ]);
 
