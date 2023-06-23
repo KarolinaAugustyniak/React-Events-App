@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Friendship;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class FriendRequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+  
     public function sendFriendRequest(Request $request, $userId)
     {
         // Retrieve the authenticated user
@@ -37,4 +43,40 @@ class FriendRequestController extends Controller
 
         return response()->json(['message' => 'Friend request sent.']);
     }
+
+    
+
+public function getFriendRequests()
+{
+    $userId = Auth::id();        
+
+    $friendRequests = Friendship::where('user_id', $userId)
+        ->where('status', 'pending')
+        ->with('friend') // eager load the 'friend' relationship
+        ->get();
+
+    $formattedRequests = $friendRequests->map(function ($request) {
+        return [
+            'id' => $request->id,
+            'user_id' => $request->user_id,
+            'friend_id' => $request->friend_id,
+            'status' => $request->status,
+            'created_at' => $request->created_at,
+            'updated_at' => $request->updated_at,
+            'friend_name' => $request->friend->name, // include the friend's name
+        ];
+    });
+
+    return response()->json($formattedRequests);
+}
+
+    public function acceptFriendRequest(FriendRequest $friendRequest)
+    {
+        $friendRequest->update(['status' => 'accepted']);
+        
+        // You can perform additional actions here, such as adding the friendship relationship
+        
+        return response()->json(['message' => 'Friend request accepted.']);
+    }
+
 }

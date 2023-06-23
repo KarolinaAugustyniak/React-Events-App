@@ -26,11 +26,17 @@ Route::middleware('auth:sanctum')->group(function(){
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::post('/send-friend-request/{userId}', [FriendRequestController::class, 'sendFriendRequest']);
     // Route::get('/favorite-events', [FavoriteEventsController::class, 'getFavoriteEvents']);
+
+
+    //friendship
+    Route::get('/get-friend-requests', [FriendRequestController::class, 'getFriendRequests']);
+    Route::post('/send-friend-request/{userId}', [FriendRequestController::class, 'sendFriendRequest']);
+    Route::patch('/friend-requests/{friendRequest}/accept', [FriendRequestController::class, 'acceptFriendRequest']);
 
 });
 
+    // Route::get('/get-friend-requests', [FriendRequestController::class, 'getFriendRequests']);
 
 
 Route::post('/signup', [AuthController::class, 'signup']);

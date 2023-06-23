@@ -37,7 +37,7 @@ export default function Aside({ className }) {
                 {token && (
                     <div className="account">
                         <p className="account__name">{user.name}</p>
-                        <p className="account__email">@{user.username}</p>
+                        <p className="account__email">{user.username}</p>
                     </div>
                 )}
 
