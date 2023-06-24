@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::post('/send-friend-request/{userId}', [FriendRequestController::class, 'sendFriendRequest']);
     Route::patch('/accept-friend-request/{friendRequestId}', [FriendRequestController::class, 'acceptFriendRequest']);
     Route::get('/friend-list', [UserController::class, 'getFriendList']);
+    Route::delete('/friends/{friendId}', [UserController::class, 'removeFriend']);
 
 });
 

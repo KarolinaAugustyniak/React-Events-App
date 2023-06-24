@@ -23,6 +23,19 @@ const FriendList = () => {
         fetchFriendList();
     }, [token]);
 
+    const handleRemoveFriend = async friendId => {
+        try {
+            await axios.delete(`http://localhost:8000/api/friends/${friendId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            setFriendList(prevList => prevList.filter(friend => friend.id !== friendId));
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div>
             <h2>Friend List</h2>
@@ -31,7 +44,10 @@ const FriendList = () => {
             ) : (
                 <ul>
                     {friendList.map(friend => (
-                        <li key={friend.id}>{friend.name}</li>
+                        <li key={friend.id}>
+                            {friend.name}
+                            <button onClick={() => handleRemoveFriend(friend.id)}>Delete</button>
+                        </li>
                     ))}
                 </ul>
             )}
