@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/get-friend-requests', [FriendRequestController::class, 'getFriendRequests']);
     Route::post('/send-friend-request/{userId}', [FriendRequestController::class, 'sendFriendRequest']);
     Route::patch('/accept-friend-request/{friendRequestId}', [FriendRequestController::class, 'acceptFriendRequest']);
+    Route::get('/friend-list', [UserController::class, 'getFriendList']);
 
 });
 

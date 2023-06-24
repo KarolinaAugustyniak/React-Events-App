@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 import EventsCta from "../components/EventsCta.jsx";
 import SavedEvents from "../components/SavedEvents.jsx";
 import Notifications from "../components/Notifications.jsx";
+import FriendList from "../components/FriendList.jsx";
 
 export default function Dashboard() {
     const { user, token, setUser, setToken } = useStateContext();
@@ -32,6 +33,7 @@ export default function Dashboard() {
                     {/* <EventsCta /> */}
                     {/* <SavedEvents /> */}
                     <Notifications />
+                    <FriendList />
                 </div>
             </div>
         </Layout>

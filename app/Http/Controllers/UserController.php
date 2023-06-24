@@ -12,4 +12,15 @@ class UserController extends Controller
         $user = User::find($id);
         return response()->json($user);
     }
+
+    //get friends
+    public function getFriendList(Request $request)
+    {
+        $userId = $request->user()->id;
+        $user = User::find($userId);
+        $friendList = $user->friends;
+
+        return response()->json($friendList);
+    }
+
 }

@@ -43,7 +43,7 @@ const Notifications = () => {
     return (
         <div>
             <h2>Friend Requests</h2>
-            {!friendRequests ? (
+            {friendRequests.length == 0 ? (
                 <p>No friend requests</p>
             ) : (
                 <ul>
