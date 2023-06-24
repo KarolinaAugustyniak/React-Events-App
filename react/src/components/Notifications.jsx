@@ -26,7 +26,7 @@ const Notifications = () => {
 
     const acceptFriendRequest = async friendRequestId => {
         try {
-            await axios.patch(`http://localhost:8000/api/friend-requests/${friendRequestId}/accept`, null, {
+            await axios.patch(`http://localhost:8000/api/accept-friend-request/${friendRequestId}`, null, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

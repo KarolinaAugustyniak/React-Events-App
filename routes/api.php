@@ -32,12 +32,9 @@ Route::middleware('auth:sanctum')->group(function(){
     //friendship
     Route::get('/get-friend-requests', [FriendRequestController::class, 'getFriendRequests']);
     Route::post('/send-friend-request/{userId}', [FriendRequestController::class, 'sendFriendRequest']);
-    Route::patch('/friend-requests/{friendRequest}/accept', [FriendRequestController::class, 'acceptFriendRequest']);
+    Route::patch('/accept-friend-request/{friendRequestId}', [FriendRequestController::class, 'acceptFriendRequest']);
 
 });
-
-    // Route::get('/get-friend-requests', [FriendRequestController::class, 'getFriendRequests']);
-
 
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);

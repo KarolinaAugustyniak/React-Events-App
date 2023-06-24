@@ -10,10 +10,6 @@ use Illuminate\Validation\ValidationException;
 
 class FriendRequestController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:sanctum');
-    }
   
     public function sendFriendRequest(Request $request, $userId)
     {
@@ -46,37 +42,44 @@ class FriendRequestController extends Controller
 
     
 
-public function getFriendRequests()
-{
-    $userId = Auth::id();        
-
-    $friendRequests = Friendship::where('user_id', $userId)
-        ->where('status', 'pending')
-        ->with('friend') // eager load the 'friend' relationship
-        ->get();
-
-    $formattedRequests = $friendRequests->map(function ($request) {
-        return [
-            'id' => $request->id,
-            'user_id' => $request->user_id,
-            'friend_id' => $request->friend_id,
-            'status' => $request->status,
-            'created_at' => $request->created_at,
-            'updated_at' => $request->updated_at,
-            'friend_name' => $request->friend->name, // include the friend's name
-        ];
-    });
-
-    return response()->json($formattedRequests);
-}
-
-    public function acceptFriendRequest(FriendRequest $friendRequest)
+    public function getFriendRequests()
     {
-        $friendRequest->update(['status' => 'accepted']);
-        
-        // You can perform additional actions here, such as adding the friendship relationship
-        
-        return response()->json(['message' => 'Friend request accepted.']);
+        $userId = Auth::id();        
+
+        $friendRequests = Friendship::where('user_id', $userId)
+            ->where('status', 'pending')
+            ->with('friend') 
+            ->get();
+
+        $formattedRequests = $friendRequests->map(function ($request) {
+            return [
+                'id' => $request->id,
+                'user_id' => $request->user_id,
+                'friend_id' => $request->friend_id,
+                'status' => $request->status,
+                'created_at' => $request->created_at,
+                'updated_at' => $request->updated_at,
+                'friend_name' => $request->friend->name, 
+            ];
+        });
+
+        return response()->json($formattedRequests);
     }
 
+   public function acceptFriendRequest($friendRequestId)
+    {
+        if(Friendship::where('id',$friendRequestId)->exists()){
+            $friendship = Friendship::find($friendRequestId);
+            $friendship->status = 'accepted';
+            $friendship->save();
+            return response()->json([
+                'message'=>' record updated succesfully'
+            ], 200);
+        }else{
+            return response()->json([
+                'message'=>'Record not found'
+            ], 404);
+        }
+    }
+    
 }
