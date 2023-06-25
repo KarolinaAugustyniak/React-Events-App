@@ -116,15 +116,13 @@ class FavoriteEventsController extends Controller
         }
     }
 
-    // public function getFavoriteEvents(Request $request)
-    // {
-    //     //   public function logout(Request $request){
-    //   //  $user = $request->user();
-    //     $user =Auth::user();
-    //   //  $user = User::findOrFail($userId);
-    //     $favoriteEvents = $user->favoriteEvents;
-    //     return response()->json($favoriteEvents);
-    // }
+    public function getFavoriteEvents(Request $request)
+    {
+        
+        $user =Auth::user();
+        $favoriteEvents = $user->favoriteEvents;
+        return response()->json($favoriteEvents);
+    }
 
    public function getFavoriteStatus($userId, $eventId)
     {

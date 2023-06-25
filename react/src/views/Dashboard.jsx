@@ -3,7 +3,7 @@ import { useStateContext } from "../contexts/ContextProvider.jsx";
 import Layout from "../components/Layout";
 import { Navigate } from "react-router-dom";
 import EventsCta from "../components/EventsCta.jsx";
-import SavedEvents from "../components/SavedEvents.jsx";
+import FavoriteEvents from "../components/FavoriteEvents.jsx";
 import Notifications from "../components/Notifications.jsx";
 import FriendList from "../components/FriendList.jsx";
 
@@ -31,9 +31,9 @@ export default function Dashboard() {
                         <p>Today is {formattedDate}</p>
                     </div>
                     {/* <EventsCta /> */}
-                    {/* <SavedEvents /> */}
-                    <Notifications />
-                    <FriendList />
+                    <FavoriteEvents />
+                    {/* <Notifications />
+                    <FriendList /> */}
                 </div>
             </div>
         </Layout>

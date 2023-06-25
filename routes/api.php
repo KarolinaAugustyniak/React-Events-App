@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->group(function(){
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    // Route::get('/favorite-events', [FavoriteEventsController::class, 'getFavoriteEvents']);
+    Route::get('/favorite-events', [FavoriteEventsController::class, 'getFavoriteEvents']);
 
 
     //friendship
@@ -48,4 +48,5 @@ Route::get('/favorite-event/{userId}/{eventId}', [FavoriteEventsController::clas
 
 //user profile
 Route::get('/user/{id}', [UserController::class, 'show']);
+Route::post('/users/{user}/profile-picture', [UserController::class, 'uploadProfilePicture']);
 

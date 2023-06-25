@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useStateContext } from "../contexts/ContextProvider";
+import axiosClient from "../axios-client";
 
 const FriendList = () => {
     const [friendList, setFriendList] = useState([]);
@@ -9,7 +10,7 @@ const FriendList = () => {
     useEffect(() => {
         const fetchFriendList = async () => {
             try {
-                const response = await axios.get("http://localhost:8000/api/friend-list", {
+                const response = await axiosClient.get("/friend-list", {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -25,7 +26,7 @@ const FriendList = () => {
 
     const handleRemoveFriend = async friendId => {
         try {
-            await axios.delete(`http://localhost:8000/api/friends/${friendId}`, {
+            await axiosClient.delete(`/friends/${friendId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

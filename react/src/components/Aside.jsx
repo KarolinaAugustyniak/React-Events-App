@@ -10,6 +10,7 @@ import AsideLinks from "./AsideLinks.jsx";
 
 export default function Aside({ className }) {
     const { user, token, setUser, setToken } = useStateContext();
+    const imageUrl = `${import.meta.env.VITE_API_BASE_URL}/storage/${user.profile_image}`;
 
     const onLogout = ev => {
         ev.preventDefault();
@@ -28,6 +29,7 @@ export default function Aside({ className }) {
         }
     }, []);
 
+    console.log(imageUrl);
     return (
         <aside className={`aside ${className}`}>
             <div className="aside__top">
@@ -36,6 +38,7 @@ export default function Aside({ className }) {
                 </Link>
                 {token && (
                     <div className="account">
+                        {user.profile_image && <img src={imageUrl} alt={user.name} />}
                         <p className="account__name">{user.name}</p>
                         <p className="account__email">{user.username}</p>
                     </div>

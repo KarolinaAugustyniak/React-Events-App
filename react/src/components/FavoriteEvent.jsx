@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function SavedEvent(props) {
+export default function FavoriteEvent(props) {
     const [details, setDetails] = useState({});
 
     const fetchDetails = async () => {
@@ -11,7 +11,6 @@ export default function SavedEvent(props) {
         );
         const detailData = await data.json();
         setDetails(detailData);
-        console.log("fetch" + detailData.name);
     };
 
     useEffect(() => {
@@ -20,16 +19,16 @@ export default function SavedEvent(props) {
 
     console.log(details);
     return (
-        <li className="saved-event">
-            <div className="saved-event__left">
-                <p className="saved-event__name">{details.name}</p>
-                <p className="saved-event__location">
+        <li className="favorite-event">
+            <div className="favorite-event__left">
+                <p className="favorite-event__name">{details.name}</p>
+                <p className="favorite-event__location">
                     {/* {details._embedded.venues[0]?.country?.name} - {details._embedded?.venues[0]?.city?.name} */}
                 </p>
             </div>
-            <div className="saved-event__right">
-                <p className="saved-event__date"> {details.dates?.start?.localDate ?? "N/A"} </p>
-                <p className="saved-event__time">{details.dates?.start?.localTime?.slice(0, 5)}</p>
+            <div className="favorite-event__right">
+                <p className="favorite-event__date"> {details.dates?.start?.localDate ?? ""} </p>
+                <p className="favorite-event__time">{details.dates?.start?.localTime?.slice(0, 5)}</p>
             </div>
         </li>
     );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useStateContext } from "../contexts/ContextProvider";
+import axiosClient from "../axios-client";
 
 const Notifications = () => {
     const [friendRequests, setFriendRequests] = useState([]);
@@ -9,7 +10,7 @@ const Notifications = () => {
     useEffect(() => {
         const fetchFriendRequests = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/get-friend-requests`, {
+                const response = await axiosClient.get(`/get-friend-requests`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -26,7 +27,7 @@ const Notifications = () => {
 
     const acceptFriendRequest = async friendRequestId => {
         try {
-            await axios.patch(`http://localhost:8000/api/accept-friend-request/${friendRequestId}`, null, {
+            await axiosClient.patch(`/accept-friend-request/${friendRequestId}`, null, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

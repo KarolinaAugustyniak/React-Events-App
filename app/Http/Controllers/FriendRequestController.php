@@ -15,6 +15,7 @@ class FriendRequestController extends Controller
     {
         // Retrieve the authenticated user
         $sender = Auth::user();
+        if(Auth::id() == $userId) return;
 
         try {
             // Retrieve the user to send the friend request

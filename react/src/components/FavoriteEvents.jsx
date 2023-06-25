@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
-import SavedEvent from "./SavedEvent";
+import FavoriteEvent from "./FavoriteEvent";
 
-export default function SavedEvents() {
+export default function FavoriteEvents() {
     const [events, setEvents] = useState([]);
     const { user, token, setUser, setToken } = useStateContext();
 
@@ -10,7 +10,7 @@ export default function SavedEvents() {
         fetch(`http://127.0.0.1:8000/api/favorite-events`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                Authorization: `Bearer ${token}`
             }
         })
             .then(response => {
@@ -26,15 +26,13 @@ export default function SavedEvents() {
             .catch(error => console.error(error));
     }, []);
 
-    console.log("list");
-
     return (
-        <div className="upcoming">
-            <h2 className="title title--24"> Saved events</h2>
+        <div>
+            <h2 className="title title--24"> Favorite events</h2>
             {events ? (
                 <ul>
                     {events.map(event => (
-                        <SavedEvent key={event} id={event} />
+                        <FavoriteEvent key={event} id={event} />
                     ))}
                 </ul>
             ) : (
