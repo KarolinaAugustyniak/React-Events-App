@@ -32,9 +32,9 @@ export default function Dashboard() {
                     </div>
                     <EventsCta />
                     <FavoriteEvents />
-                    {/* <Notifications />
-                    <FriendList /> */}
                 </div>
+                <Notifications />
+                <FriendList />
             </div>
         </Layout>
     );

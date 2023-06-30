@@ -36,6 +36,9 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/friend-list', [UserController::class, 'getFriendList']);
     Route::delete('/friends/{friendId}', [UserController::class, 'removeFriend']);
 
+    //profile picture
+    Route::post('/users/profile-picture', [UserController::class, 'uploadProfilePicture']);
+
 });
 
 Route::post('/signup', [AuthController::class, 'signup']);
@@ -48,5 +51,4 @@ Route::get('/favorite-event/{userId}/{eventId}', [FavoriteEventsController::clas
 
 //user profile
 Route::get('/user/{id}', [UserController::class, 'show']);
-Route::post('/users/{user}/profile-picture', [UserController::class, 'uploadProfilePicture']);
 

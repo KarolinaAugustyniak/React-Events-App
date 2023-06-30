@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosClient from "../axios-client.js";
 import { useStateContext } from "../contexts/ContextProvider";
 import Layout from "../components/Layout";
@@ -17,6 +17,8 @@ export default function Signup() {
 
     const { setUser, setToken } = useStateContext();
 
+    const navigate = useNavigate();
+
     const onSubmit = ev => {
         ev.preventDefault();
         const payload = {
@@ -32,6 +34,7 @@ export default function Signup() {
                 setUser(data.user);
                 setToken(data.token);
                 setInfo(`Account was created succesfully`);
+                navigate("/dashboard");
             })
             .catch(err => {
                 const response = err.response;

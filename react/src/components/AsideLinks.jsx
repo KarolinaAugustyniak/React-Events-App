@@ -11,7 +11,8 @@ function AsideLinks() {
     const links = [
         { to: "/dashboard", label: "Dashboard", icon: HomeIcon },
         { to: "/", label: "Events", icon: TicketIcon },
-        { to: "/map", label: "Map", icon: MapIcon }
+        { to: "/map", label: "Map", icon: MapIcon },
+        { to: "/settings", label: "Settings", icon: SettingsIcon }
     ];
 
     return (

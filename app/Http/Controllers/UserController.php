@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -41,8 +41,9 @@ class UserController extends Controller
     }
 
     //upload profile image 
-    public function uploadProfilePicture(Request $request, User $user)
+    public function uploadProfilePicture(Request $request)
     {
+        $user = Auth::user();
         // Validate the uploaded file
         $request->validate([
             'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',

@@ -4,7 +4,7 @@ import EventCard from "./EventCard";
 
 export default function FavoriteEvents() {
     const [events, setEvents] = useState([]);
-    const { user, token, setUser, setToken } = useStateContext();
+    const { token } = useStateContext();
 
     useEffect(() => {
         fetch(`http://127.0.0.1:8000/api/favorite-events`, {
@@ -27,9 +27,9 @@ export default function FavoriteEvents() {
     }, []);
 
     return (
-        <div>
+        <div className="events-box">
             <h2 className="title title--24"> Favorite events</h2>
-            {events ? (
+            {!events.length == 0 ? (
                 <ul className="event-card-wrapper">
                     {events.map(event => (
                         <EventCard key={event} id={event} />

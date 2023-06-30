@@ -84,6 +84,11 @@ p {
     }
 }
 
+.message {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .btn {
     display: flex;
     text-align: center;
@@ -330,7 +335,7 @@ p {
         font-weight: 500;
         font-size: 24px;
         margin-bottom: 5px;
-        margin-top: 8px;
+        margin-top: 12px;
     }
 
     &__email {
@@ -345,6 +350,13 @@ p {
     &__login {
         color: $purple;
         font-weight: 600;
+    }
+
+    &__img {
+        border-radius: 50%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -832,7 +844,6 @@ p {
     }
 
     &:nth-child(3n+2) {
-
         background: $pinkGradient;
     }
 
@@ -843,4 +854,8 @@ p {
         left: 0;
         bottom: -6px;
     }
+}
+
+.events-box {
+    margin-top: 30px;
 }
