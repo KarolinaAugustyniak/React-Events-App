@@ -30,7 +30,7 @@ export default function Dashboard() {
                         <p className="title title--30">Hello {user.name},</p>
                         <p>Today is {formattedDate}</p>
                     </div>
-                    {/* <EventsCta /> */}
+                    <EventsCta />
                     <FavoriteEvents />
                     {/* <Notifications />
                     <FriendList /> */}

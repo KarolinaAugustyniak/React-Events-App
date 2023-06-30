@@ -29,7 +29,6 @@ export default function Aside({ className }) {
         }
     }, []);
 
-    console.log(imageUrl);
     return (
         <aside className={`aside ${className}`}>
             <div className="aside__top">

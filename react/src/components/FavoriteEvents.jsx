@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
-import FavoriteEvent from "./FavoriteEvent";
+import EventCard from "./EventCard";
 
 export default function FavoriteEvents() {
     const [events, setEvents] = useState([]);
@@ -20,7 +20,7 @@ export default function FavoriteEvents() {
                 return response.json();
             })
             .then(data => {
-                const eventIds = data.map(event => event.event_id).slice(0, 3);
+                const eventIds = data.map(event => event.event_id).slice(0, 5);
                 setEvents(eventIds);
             })
             .catch(error => console.error(error));
@@ -30,9 +30,9 @@ export default function FavoriteEvents() {
         <div>
             <h2 className="title title--24"> Favorite events</h2>
             {events ? (
-                <ul>
+                <ul className="event-card-wrapper">
                     {events.map(event => (
-                        <FavoriteEvent key={event} id={event} />
+                        <EventCard key={event} id={event} />
                     ))}
                 </ul>
             ) : (

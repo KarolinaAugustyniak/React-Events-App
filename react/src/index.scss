@@ -775,3 +775,72 @@ p {
         margin-top: -65px;
     }
 }
+
+.event-card-wrapper {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 650px;
+    width: 100%;
+    align-items: flex-end;
+}
+
+.event-card {
+    position: relative;
+    border-radius: 10px;
+    max-width: 650px;
+    width: 100%;
+
+    &__link {
+        color: #fff;
+        text-decoration: none;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 30px;
+    }
+
+    &__name {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    &__date {
+        white-space: nowrap;
+    }
+
+    &__time {
+        text-align: right;
+    }
+
+    &:nth-child(3n) {
+        background: $purpleGradient;
+    }
+
+    &:nth-child(3n+1) {
+        background: $tealGradient;
+    }
+
+    &:nth-child(3n+2) {
+
+        background: $pinkGradient;
+    }
+
+    &::after {
+        display: block;
+        content: url(assets/img/event-bg.png);
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+    }
+}
