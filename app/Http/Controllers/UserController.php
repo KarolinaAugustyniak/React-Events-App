@@ -7,6 +7,13 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public function index(Request $request)
+    {
+        $currentUser = $request->user();
+        $users = User::where('id', '!=', $currentUser->id)->get();
+        
+        return response()->json(['users' => $users]);
+    }
     public function show($id)
     {
         $user = User::find($id);

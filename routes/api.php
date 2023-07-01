@@ -39,6 +39,9 @@ Route::middleware('auth:sanctum')->group(function(){
     //profile picture
     Route::post('/users/profile-picture', [UserController::class, 'uploadProfilePicture']);
 
+    //list of users
+    Route::get('/users', [UserController::class, 'index']);
+
 });
 
 Route::post('/signup', [AuthController::class, 'signup']);

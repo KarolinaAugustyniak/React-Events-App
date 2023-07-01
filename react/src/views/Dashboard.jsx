@@ -24,7 +24,7 @@ export default function Dashboard() {
     const formattedDate = date.toLocaleDateString("en-US", options);
     return (
         <Layout>
-            <div className="dashboard">
+            <div className="dashboard container">
                 <div className="dashboard__left">
                     <div className="dashboard__hello">
                         <p className="title title--30">Hello {user.name},</p>

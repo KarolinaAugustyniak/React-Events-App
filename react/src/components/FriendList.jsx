@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
+import UserList from "./UserList";
 
 const FriendList = () => {
     const [friendList, setFriendList] = useState([]);
     const { token } = useStateContext();
+    const [modal, setModal] = useState(false);
+    const modalRef = useRef(null);
 
     useEffect(() => {
         const fetchFriendList = async () => {
@@ -37,6 +40,16 @@ const FriendList = () => {
         }
     };
 
+    const handleClick = () => {
+        setModal(!modal);
+    };
+
+    const handleModalClick = event => {
+        if (!modalRef.current.contains(event.target)) {
+            setModal(false);
+        }
+    };
+
     return (
         <div>
             <h2>Friend List</h2>
@@ -51,6 +64,17 @@ const FriendList = () => {
                         </li>
                     ))}
                 </ul>
+            )}
+            <button onClick={handleClick}>Add a new friend</button>
+            {modal && (
+                <div className="modal" onClick={handleModalClick}>
+                    <div className="modal__content" ref={modalRef}>
+                        <button onClick={handleClick} className="modal__close">
+                            close
+                        </button>
+                        <UserList />
+                    </div>
+                </div>
             )}
         </div>
     );

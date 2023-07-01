@@ -68,7 +68,7 @@ export default function Events() {
 
     return (
         <Layout>
-            <div className="events">
+            <div className="events container">
                 <div className="categories ">
                     <CategoryBox
                         label="Music"
