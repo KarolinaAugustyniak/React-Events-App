@@ -116,10 +116,9 @@ class FavoriteEventsController extends Controller
         }
     }
 
-    public function getFavoriteEvents(Request $request)
+    public function getFavoriteEvents($userId)
     {
-        
-        $user =Auth::user();
+        $user = User::findOrFail($userId);
         $favoriteEvents = $user->favoriteEvents;
         return response()->json($favoriteEvents);
     }

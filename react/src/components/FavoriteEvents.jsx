@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useStateContext } from "../contexts/ContextProvider";
 import EventCard from "./EventCard";
 
-export default function FavoriteEvents() {
+export default function FavoriteEvents({ userId }) {
     const [events, setEvents] = useState([]);
     const { token } = useStateContext();
 
     useEffect(() => {
-        fetch(`http://127.0.0.1:8000/api/favorite-events`, {
+        fetch(`http://127.0.0.1:8000/api/favorite-events/${userId}`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -24,7 +24,7 @@ export default function FavoriteEvents() {
                 setEvents(eventIds);
             })
             .catch(error => console.error(error));
-    }, []);
+    }, [userId]);
 
     return (
         <div className="events-box">

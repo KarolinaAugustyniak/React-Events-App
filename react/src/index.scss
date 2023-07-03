@@ -117,11 +117,19 @@ p {
         font-size: 20px;
         font-weight: 600;
     }
+
+    &--disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+}
+
+.section {
+    background-color: #fff;
+    border-radius: 10px;
 }
 
 .events {
-
-
     &__wrapper {
         display: flex;
         row-gap: 50px;
@@ -816,6 +824,14 @@ p {
         justify-content: space-between;
         gap: 20px;
         padding: 30px;
+
+        &::after {
+            display: block;
+            content: url(assets/img/event-bg.png);
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+        }
     }
 
     &__name {
@@ -848,14 +864,6 @@ p {
 
     &:nth-child(3n+2) {
         background: $pinkGradient;
-    }
-
-    &::after {
-        display: block;
-        content: url(assets/img/event-bg.png);
-        position: absolute;
-        left: 0;
-        bottom: -6px;
     }
 }
 
@@ -893,5 +901,35 @@ p {
         background-color: #fff;
         padding: 8px;
         cursor: pointer;
+    }
+}
+
+.user-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.user-card {
+    &__link {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        margin-bottom: 15px;
+        text-decoration: none;
+    }
+
+    &__img {
+        border-radius: 50%;
+    }
+
+    &__name {
+        font-size: 20px;
+        color: $font;
+        font-weight: 500;
+    }
+
+    &__username {
+        font-size: 14px;
+        color: $subtitleGray;
     }
 }

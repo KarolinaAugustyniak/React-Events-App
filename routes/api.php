@@ -26,11 +26,9 @@ Route::middleware('auth:sanctum')->group(function(){
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::get('/favorite-events', [FavoriteEventsController::class, 'getFavoriteEvents']);
-
-
     //friendship
     Route::get('/get-friend-requests', [FriendRequestController::class, 'getFriendRequests']);
+    Route::get('/get-is-friend-request-send/{userId}', [FriendRequestController::class, 'getIsRequestSent']);
     Route::post('/send-friend-request/{userId}', [FriendRequestController::class, 'sendFriendRequest']);
     Route::patch('/accept-friend-request/{friendRequestId}', [FriendRequestController::class, 'acceptFriendRequest']);
     Route::get('/friend-list', [UserController::class, 'getFriendList']);
@@ -51,6 +49,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/favorite-events', [FavoriteEventsController::class, 'store']);
 Route::delete('/favorite-events/{userId}/{eventId}',  [FavoriteEventsController::class, 'destroy']);
 Route::get('/favorite-event/{userId}/{eventId}', [FavoriteEventsController::class, 'getFavoriteStatus']);
+Route::get('/favorite-events/{userId}', [FavoriteEventsController::class, 'getFavoriteEvents']);
 
 //user profile
 Route::get('/user/{id}', [UserController::class, 'show']);

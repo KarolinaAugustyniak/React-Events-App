@@ -1,14 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
 import UserList from "./UserList";
+import CloseIcon from "../assets/img/Close_round_light.svg";
 
 const FriendList = () => {
     const [friendList, setFriendList] = useState([]);
     const { token } = useStateContext();
     const [modal, setModal] = useState(false);
     const modalRef = useRef(null);
+    const location = useLocation();
 
     useEffect(() => {
         const fetchFriendList = async () => {
@@ -56,21 +59,24 @@ const FriendList = () => {
             {friendList.length === 0 ? (
                 <p>No friends found</p>
             ) : (
-                <ul>
-                    {friendList.map(friend => (
-                        <li key={friend.id}>
-                            {friend.name}
-                            <button onClick={() => handleRemoveFriend(friend.id)}>Delete</button>
-                        </li>
-                    ))}
-                </ul>
+                <>
+                    <p>{friendList.length} friends</p>
+                    <ul>
+                        {friendList.map(friend => (
+                            <li key={friend.id}>
+                                {friend.name}
+                                <button onClick={() => handleRemoveFriend(friend.id)}>Delete</button>
+                            </li>
+                        ))}
+                    </ul>
+                </>
             )}
-            <button onClick={handleClick}>Add a new friend</button>
+            {location.pathname == "/dashboard" && <button onClick={handleClick}>Add a new friend</button>}
             {modal && (
                 <div className="modal" onClick={handleModalClick}>
                     <div className="modal__content" ref={modalRef}>
                         <button onClick={handleClick} className="modal__close">
-                            close
+                            <img src={CloseIcon} alt="close" />
                         </button>
                         <UserList />
                     </div>

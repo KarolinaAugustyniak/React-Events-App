@@ -8,7 +8,7 @@ export default function UserCard({ user }) {
 
     return (
         <li className="user-card">
-            <Link to={`/user/${id}`}>
+            <Link to={`/user/${id}`} className="user-card__link">
                 {profile_image ? (
                     <img src={imageUrl} alt={name} className="user-card__img" width="50" height="50" />
                 ) : (

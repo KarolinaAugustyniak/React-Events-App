@@ -31,10 +31,10 @@ export default function Dashboard() {
                         <p>Today is {formattedDate}</p>
                     </div>
                     <EventsCta />
-                    <FavoriteEvents />
+                    <FavoriteEvents userId={user.id} />
                 </div>
-                <Notifications />
                 <FriendList />
+                <Notifications />
             </div>
         </Layout>
     );

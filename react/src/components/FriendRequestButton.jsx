@@ -1,17 +1,34 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useStateContext } from "../contexts/ContextProvider";
+import axiosClient from "../axios-client";
 
 const FriendRequestButton = ({ userId }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSent, setIsSent] = useState(false);
     const { user, token, setUser, setToken } = useStateContext();
 
+    useEffect(() => {
+        try {
+            axiosClient
+                .get(`/get-is-friend-request-send/${userId}`, null, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                })
+                .then(response => {
+                    setIsSent(response.data.isSent);
+                });
+        } catch (error) {
+            console.error(error);
+        }
+    }, [user]);
+
     const sendFriendRequest = async () => {
         setIsLoading(true);
 
         try {
-            await axios.post(`http://127.0.0.1:8000/api/send-friend-request/${userId}`, null, {
+            await axiosClient.post(`/send-friend-request/${userId}`, null, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -25,11 +42,19 @@ const FriendRequestButton = ({ userId }) => {
     };
 
     if (isLoading) {
-        return <button disabled>Sending...</button>;
+        return (
+            <button disabled className="btn btn--teal btn--disabled">
+                Sending...
+            </button>
+        );
     }
 
     if (isSent) {
-        return <button disabled>Request Sent</button>;
+        return (
+            <button disabled className="btn btn--teal btn--disabled">
+                Request Sent
+            </button>
+        );
     }
 
     return (

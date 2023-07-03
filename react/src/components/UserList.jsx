@@ -31,7 +31,7 @@ const UserList = () => {
             {users.length === 0 ? (
                 <p>No users available</p>
             ) : (
-                <ul>
+                <ul className="user-list">
                     {users.map(user => (
                         <UserCard key={user.id} user={user} />
                     ))}

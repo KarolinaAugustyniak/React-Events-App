@@ -27,21 +27,30 @@ class FriendRequestController extends Controller
         }
 
         // Check if the sender is already friends with the user
-        if ($sender->friends()->where('friendships.id', $user->id)->exists()) {
+        if ($sender->friends()->where('friendships.id', $userId)->exists()) {
             throw ValidationException::withMessages([
                 'user' => 'You are already friends with this user.',
             ]);
         }
 
         // Check if a friend request already exists
-        if (!$sender->friendRequests()->where('friendships.id', $user->id)->exists()) {
+        if (!$sender->friendRequests()->where('friendships.id', $userId)->exists()) {
             $sender->friendRequests()->attach($user, ['status' => 'pending']);
         }
 
         return response()->json(['message' => 'Friend request sent.']);
     }
 
-    
+     public function getIsRequestSent(Request $request, $userId){
+        $sender = Auth::user();
+
+        // Check if the sender has sent a friend request to the user
+        $isSent = $sender->friendRequests()->where('users.id', $userId)->exists();
+
+        return response()->json(['isSent' => $isSent]);
+
+     }
+
 
     public function getFriendRequests()
     {
