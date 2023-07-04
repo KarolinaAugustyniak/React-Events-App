@@ -6,7 +6,7 @@ import axiosClient from "../axios-client";
 const FriendRequestButton = ({ userId }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [isSent, setIsSent] = useState(false);
-    const { user, token, setUser, setToken } = useStateContext();
+    const { user, token } = useStateContext();
 
     useEffect(() => {
         try {

@@ -38,7 +38,6 @@ export default function FavoriteButton(props) {
                         throw new Error(res);
                     }
                 })
-
                 .catch(error => {
                     console.error(error);
                     setErrorMessage("An error occurred while removing from favorites");

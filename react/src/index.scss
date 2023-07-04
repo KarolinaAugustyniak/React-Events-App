@@ -161,19 +161,6 @@ p {
         background-color: #fff;
     }
 
-    &__classifications {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-
-    &__classification {
-        font-size: 14px;
-        padding: 8px 10px;
-        background-color: #3fc0c91b;
-        border-radius: 4px;
-    }
-
     &__info {
         display: flex;
         flex-direction: column;
@@ -185,7 +172,7 @@ p {
         text-transform: uppercase;
     }
 
-    &__img {
+    img {
         width: 100%;
         object-fit: cover;
         border-radius: 10px 10px 0 0;
@@ -199,7 +186,6 @@ p {
     &__wrapper {
         display: flex;
         justify-content: space-between;
-        flex-wrap: wrap;
         gap: 12px;
         align-items: flex-end;
     }
@@ -216,6 +202,10 @@ p {
 @media(max-width:900px) {
     .card {
         width: calc(100% / 2 - 12px);
+
+        &__wrapper {
+            flex-wrap: wrap;
+        }
     }
 }
 
@@ -223,6 +213,19 @@ p {
     .card {
         width: 100%;
     }
+}
+
+.classifications {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.classification {
+    font-size: 14px;
+    padding: 8px 10px;
+    background-color: #3fc0c91b;
+    border-radius: 4px;
 }
 
 .search {
@@ -595,7 +598,7 @@ p {
 
     &__info {
         font-size: 11px;
-        color: #b7b7b7;
+        color: #7a7a7a;
         font-weight: 300;
     }
 }
@@ -931,5 +934,33 @@ p {
     &__username {
         font-size: 14px;
         color: $subtitleGray;
+    }
+}
+
+.event {
+    display: flex;
+    gap: 30px;
+
+    &__title {
+        margin-bottom: 12px;
+    }
+
+    &__content {
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__favorite {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    &__details {
+        display: flex;
+        gap: 15px;
+        margin-top: 12px;
+        align-items: flex-start;
     }
 }

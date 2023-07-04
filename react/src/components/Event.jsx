@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Price from "./Price";
+import Classifications from "./Classifications";
+import SizeAdjustedImage from "./SizeAdjustedImage";
 
 const Event = props => {
     const { id, name, images, classifications, _embedded, dates, priceRanges } = props.event;
@@ -15,7 +17,7 @@ const Event = props => {
 
     return (
         <Link to={"/event/" + id} className="card">
-            <img className="card__img" height="182" width="324" src={images[1].url} alt={name} />
+            <SizeAdjustedImage images={images} width={324} />
             <div className="card__content">
                 <div className="card__info">
                     <p>
@@ -26,13 +28,7 @@ const Event = props => {
                     </p>
                 </div>
                 <h3 className="card__title">{name}</h3>
-                <div className="card__classifications">
-                    {categories.map((category, index) => (
-                        <p className="card__classification" key={index}>
-                            {category}
-                        </p>
-                    ))}
-                </div>
+                <Classifications categories={categories} />
                 <div className="card__wrapper">
                     <button className="btn btn--teal" target="_blank">
                         More
