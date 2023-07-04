@@ -46,6 +46,8 @@ export default function Login() {
                 }
             });
     };
+
+    console.log(info);
     return (
         <Layout>
             <div className="main__wrapper">
@@ -53,7 +55,7 @@ export default function Login() {
                     <h1 className="form__title title title--40">Login</h1>
                     {info && (
                         <div className="form__info form__info--error">
-                            <p>{info}</p>
+                            <p>{info.email}</p>
                         </div>
                     )}
                     <input ref={emailRef} type="email" className="form__input" placeholder="E-mail" />
