@@ -8,6 +8,7 @@ import SizeAdjustedImage from "../components/SizeAdjustedImage";
 import Price from "../components/Price";
 import PinIcon from "../assets/img/Pin_light.svg";
 import CalendarIcon from "../assets/img/Calendar_light.svg";
+import MiniMap from "../components/MiniMap";
 
 function EventView() {
     let params = useParams();
@@ -38,7 +39,7 @@ function EventView() {
 
     return (
         <Layout>
-            <div className="event">
+            <div className="event container">
                 <div className="event__left">
                     {images && <SizeAdjustedImage images={images} width={920} />}
                     <div className="event__content">
@@ -74,9 +75,10 @@ function EventView() {
                         <img src={CalendarIcon} alt="calendar" />
                         <div>
                             <p>{details.dates?.start?.localDate}</p>
-                            <p>{details.dates?.start?.localTime.slice(0, 5)}</p>
+                            <p>{details.dates?.start?.localTime?.slice(0, 5)}</p>
                         </div>
                     </div>
+                    {details._embedded?.venues && <MiniMap location={details._embedded?.venues[0]?.location} />}
                 </div>
             </div>
         </Layout>

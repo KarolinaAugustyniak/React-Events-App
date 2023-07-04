@@ -45,10 +45,10 @@ export default function Map() {
             });
     };
 
-    const position = [52.240004, 21.022993];
+    const position = [51.967809, 19.798757];
     return (
         <Layout>
-            <MapContainer center={position} zoom={13} style={{ minHeight: "300px", minWidth: "200px" }} className="map">
+            <MapContainer center={position} zoom={7} style={{ minHeight: "300px", minWidth: "200px" }} className="map">
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
