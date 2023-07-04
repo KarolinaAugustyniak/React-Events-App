@@ -5,6 +5,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
 import UserList from "./UserList";
 import CloseIcon from "../assets/img/Close_round_light.svg";
+import UserCard from "./UserCard";
 
 const FriendList = () => {
     const [friendList, setFriendList] = useState([]);
@@ -54,24 +55,27 @@ const FriendList = () => {
     };
 
     return (
-        <div>
+        <div className="section friend-list">
             <h2>Friend List</h2>
             {friendList.length === 0 ? (
                 <p>No friends found</p>
             ) : (
                 <>
-                    <p>{friendList.length} friends</p>
-                    <ul>
+                    <p>
+                        {friendList.length} {friendList.length == 1 ? "friend" : "friends"}
+                    </p>
+                    <ul className="user-list">
                         {friendList.map(friend => (
-                            <li key={friend.id}>
-                                {friend.name}
-                                <button onClick={() => handleRemoveFriend(friend.id)}>Delete</button>
-                            </li>
+                            <UserCard key={friend.id} user={friend} handleRemoveFriend={handleRemoveFriend} />
                         ))}
                     </ul>
                 </>
             )}
-            {location.pathname == "/dashboard" && <button onClick={handleClick}>Add a new friend</button>}
+            {location.pathname == "/dashboard" && (
+                <button onClick={handleClick} className="btn btn--teal">
+                    Add a new friend
+                </button>
+            )}
             {modal && (
                 <div className="modal" onClick={handleModalClick}>
                     <div className="modal__content" ref={modalRef}>

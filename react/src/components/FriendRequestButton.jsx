@@ -43,7 +43,7 @@ const FriendRequestButton = ({ userId }) => {
 
     if (isLoading) {
         return (
-            <button disabled className="btn btn--teal btn--disabled">
+            <button disabled className="btn btn--teal btn--disabled  friend-request">
                 Sending...
             </button>
         );
@@ -51,14 +51,14 @@ const FriendRequestButton = ({ userId }) => {
 
     if (isSent) {
         return (
-            <button disabled className="btn btn--teal btn--disabled">
+            <button disabled className="btn btn--teal btn--disabled  friend-request">
                 Request Sent
             </button>
         );
     }
 
     return (
-        <button onClick={sendFriendRequest} className="btn btn--teal">
+        <button onClick={sendFriendRequest} className="btn btn--teal friend-request">
             Send Friend Request
         </button>
     );

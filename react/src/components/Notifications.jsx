@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
+import UserCard from "./UserCard";
 
 const Notifications = () => {
     const [friendRequests, setFriendRequests] = useState([]);
@@ -16,7 +16,6 @@ const Notifications = () => {
                     }
                 });
                 setFriendRequests(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.error(error);
             }
@@ -41,21 +40,29 @@ const Notifications = () => {
         }
     };
 
+    console.log(friendRequests);
     return (
-        <div>
-            <h2>Friend Requests</h2>
+        <div className="section notifications">
+            <h2 className="notifications__title">Notifications</h2>
+            <p className="notifications__subtitle">
+                {friendRequests.length} {friendRequests.length === 1 ? "notification" : "notifications"}
+            </p>
+            <h3 className="notifications__heading">Friend Requests</h3>
             {friendRequests.length == 0 ? (
                 <p>No friend requests</p>
             ) : (
-                <ul>
+                <ul className="user-list">
                     {friendRequests.map(request => (
-                        <li key={request.id}>
-                            <span>{request.friend_name}</span>
-                            <button onClick={() => acceptFriendRequest(request.id)}>Accept</button>
-                        </li>
+                        <UserCard
+                            key={request.id}
+                            user={request.friend}
+                            acceptFriendRequest={acceptFriendRequest}
+                            request={request}
+                        />
                     ))}
                 </ul>
             )}
+            <h3 className="notifications__heading">Event invites</h3>
         </div>
     );
 };

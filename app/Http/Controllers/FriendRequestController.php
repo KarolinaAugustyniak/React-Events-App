@@ -69,7 +69,7 @@ class FriendRequestController extends Controller
                 'status' => $request->status,
                 'created_at' => $request->created_at,
                 'updated_at' => $request->updated_at,
-                'friend_name' => $request->friend->name, 
+                'friend' => $request->friend, 
             ];
         });
 

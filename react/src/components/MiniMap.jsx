@@ -14,7 +14,7 @@ export default function MiniMap({ location }) {
     const marker = [location?.latitude, location?.longitude];
 
     return (
-        <MapContainer center={marker} zoom={10} style={{ minHeight: "540px", minWidth: "200px" }} className="mini-map">
+        <MapContainer center={marker} zoom={14} style={{ minHeight: "540px", minWidth: "200px" }} className="mini-map">
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

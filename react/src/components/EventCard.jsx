@@ -18,7 +18,6 @@ export default function EventCard(props) {
         fetchDetails();
     }, [props.id]);
 
-    console.log(details);
     return (
         <li className="event-card">
             <Link to={"/event/" + details.id} className="event-card__link">

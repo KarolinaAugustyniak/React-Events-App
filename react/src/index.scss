@@ -16,7 +16,7 @@ $box-shadow: 8px 8px 20px 0px rgba(85, 117, 169, 0.15);
 
 //z-index
 $menuButton: 50;
-$aside: 30;
+$aside: 40;
 $main: 10;
 $modal: 60;
 
@@ -915,6 +915,12 @@ p {
 }
 
 .user-card {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+
     &__link {
         display: flex;
         gap: 15px;
@@ -937,7 +943,21 @@ p {
         font-size: 14px;
         color: $subtitleGray;
     }
+
+    &__button {
+        cursor: pointer;
+        border: none;
+        margin-top: 6px;
+        background-color: transparent;
+    }
+
+    .friend-request {
+        font-size: 14px;
+        margin-top: 0;
+        padding: 12px 22px;
+    }
 }
+
 
 .event {
     display: flex;
@@ -996,4 +1016,29 @@ p {
             max-width: 100%;
         }
     }
+}
+
+.notifications {
+    padding: 30px;
+    max-width: 310px;
+    width: 100%;
+
+    &__title {
+        margin-bottom: 1px;
+    }
+
+    &__subtitle {
+        color: $subtitleGray;
+    }
+
+    &__heading {
+        margin-top: 20px;
+        margin-bottom: 3px;
+    }
+}
+
+.friend-list {
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
 }

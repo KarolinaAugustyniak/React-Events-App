@@ -33,7 +33,7 @@ const UserList = () => {
             ) : (
                 <ul className="user-list">
                     {users.map(user => (
-                        <UserCard key={user.id} user={user} />
+                        <UserCard key={user.id} user={user} sendRequest={true} />
                     ))}
                 </ul>
             )}

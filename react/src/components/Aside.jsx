@@ -37,8 +37,10 @@ export default function Aside({ className }) {
                 </Link>
                 {token && (
                     <div className="account">
-                        {user.profile_image && (
+                        {user.profile_image ? (
                             <img src={imageUrl} alt={user.name} width="110" height="110" className="account__img" />
+                        ) : (
+                            <img src={GuestAvatar} alt={user.name} width="110" height="110" className="account__img" />
                         )}
                         <p className="account__name">{user.name}</p>
                         <p className="account__email">{user.username}</p>
