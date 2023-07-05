@@ -820,6 +820,7 @@ p {
     border-radius: 10px;
     max-width: 650px;
     width: 100%;
+    overflow: hidden;
 
     &__link {
         color: #fff;
@@ -836,6 +837,8 @@ p {
             position: absolute;
             left: 0;
             bottom: -6px;
+            max-width: 100%;
+            right: 0;
         }
     }
 
@@ -1041,4 +1044,59 @@ p {
     padding: 30px;
     max-width: 400px;
     width: 100%;
+}
+
+.friend-request {
+    font-size: 18px;
+    margin-top: 0;
+}
+
+.user {
+    display: flex;
+    gap: 30px;
+
+    &__img {
+        object-fit: cover;
+        width: 40%;
+        border-radius: 10px;
+        height: auto;
+        min-height: 200px;
+    }
+
+    &__wrapper {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    &__profile {
+        display: flex;
+        max-width: 980px;
+        width: 100%;
+    }
+
+    &__info {
+        padding: 30px;
+        width: 60%;
+    }
+}
+
+@media(max-width:1200px) {
+    .user {
+        flex-direction: column;
+    }
+}
+
+@media(max-width:768px) {
+    .user {
+        &__info {
+            width: 100%;
+        }
+
+        &__profile {
+            flex-wrap: wrap;
+        }
+    }
 }

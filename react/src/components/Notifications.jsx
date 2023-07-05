@@ -63,6 +63,7 @@ const Notifications = () => {
                 </ul>
             )}
             <h3 className="notifications__heading">Event invites</h3>
+            <p>No invitations to events</p>
         </div>
     );
 };

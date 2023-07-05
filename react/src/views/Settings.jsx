@@ -9,7 +9,7 @@ export default function Settings() {
 
     return (
         <Layout>
-            <div className="settings">
+            <div className="settings container">
                 <ProfilePictureUpload />
             </div>
         </Layout>
