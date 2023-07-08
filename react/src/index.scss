@@ -15,10 +15,10 @@ $yellowGradient: linear-gradient(273.53deg, #FFEAB3 1.56%, #EECEB1 99.1%);
 $box-shadow: 8px 8px 20px 0px rgba(85, 117, 169, 0.15);
 
 //z-index
-$menuButton: 50;
-$aside: 40;
+$menuButton: 500;
+$aside: 490;
 $main: 10;
-$modal: 60;
+$modal: 501;
 
 $fontFamily: 'Inter',
     sans-serif;
@@ -110,12 +110,16 @@ p {
     border: none;
     cursor: pointer;
     gap: 10px;
+    font-family: $fontFamily;
+    font-size: 20px;
+    font-weight: 600;
 
     &--teal {
         background: linear-gradient(95.19deg, #95D4A7 -28.83%, #95CCD4 119.17%);
-        font-family: $fontFamily;
-        font-size: 20px;
-        font-weight: 600;
+    }
+
+    &--purple {
+        background: $purpleGradient;
     }
 
     &--disabled {
@@ -780,6 +784,24 @@ p {
     }
 }
 
+@media(max-width:1500px) {
+    .dashboard {
+        flex-wrap: wrap;
+        gap: 18px;
+        justify-content: center;
+    }
+}
+
+@media(max-width:900px) {
+    .dashboard {
+        &__left {
+            max-width: 655px;
+            width: 100%;
+        }
+    }
+
+}
+
 .events-cta {
     color: #fff;
     background-image: url(../src/assets/img/events-cta-bg.png), $purpleGradient;
@@ -801,6 +823,27 @@ p {
 
     &__img {
         margin-top: -65px;
+    }
+}
+
+@media(max-width:560px) {
+    .events-cta {
+        align-items: center;
+        gap: 10px;
+        padding: 28px 21px;
+
+        &__img {
+            margin-top: 0;
+            margin-left: auto;
+        }
+    }
+}
+
+@media(max-width:350px) {
+    .events-cta {
+        &__img {
+            display: none;
+        }
     }
 }
 
@@ -872,6 +915,18 @@ p {
 
     &:nth-child(3n+2) {
         background: $pinkGradient;
+    }
+}
+
+@media(max-width:450px) {
+    .event-card {
+        &__link {
+            flex-direction: column;
+        }
+
+        &__time {
+            text-align: left;
+        }
     }
 }
 
@@ -1061,6 +1116,9 @@ p {
         border-radius: 10px;
         height: auto;
         min-height: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 400px;
     }
 
     &__wrapper {
@@ -1081,6 +1139,17 @@ p {
         padding: 30px;
         width: 60%;
     }
+
+    &__location {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    &__bio {
+        margin: 15px 0;
+    }
 }
 
 @media(max-width:1200px) {
@@ -1098,5 +1167,15 @@ p {
         &__profile {
             flex-wrap: wrap;
         }
+
+        &__img {
+            width: 100%;
+        }
     }
+}
+
+.settings {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
 }

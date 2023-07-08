@@ -33,7 +33,9 @@ const ProfilePictureUpload = () => {
     return (
         <div>
             <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUpload}>Upload Profile Picture</button>
+            <button onClick={handleUpload} className="btn btn--purple">
+                Upload Profile Picture
+            </button>
             {message && <p className="message">{message}</p>}
         </div>
     );

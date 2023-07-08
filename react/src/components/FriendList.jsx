@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import axios from "axios";
 import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
 import UserList from "./UserList";
@@ -17,7 +16,7 @@ const FriendList = () => {
     useEffect(() => {
         const fetchFriendList = async () => {
             try {
-                const response = await axiosClient.get("/friend-list", {
+                const response = await axiosClient.get(`/friend-list`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

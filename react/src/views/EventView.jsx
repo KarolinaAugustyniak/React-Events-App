@@ -49,7 +49,7 @@ function EventView() {
                             <div className="event__favorite">
                                 Add this event to favorites <FavoriteButton eventId={params.eventID} userId={user.id} />
                             </div>
-                            <button>Invite a friend</button>
+                            {/* <button>Invite a friend</button> */}
                         </div>
                         {details.priceRanges && <Price priceRanges={details.priceRanges} />}
                     </div>

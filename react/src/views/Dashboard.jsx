@@ -33,7 +33,7 @@ export default function Dashboard() {
                     <EventsCta />
                     <FavoriteEvents userId={user.id} />
                 </div>
-                <FriendList />
+                <FriendList userId={user.id} />
                 <Notifications />
             </div>
         </Layout>

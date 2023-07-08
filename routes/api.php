@@ -31,8 +31,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/get-is-friend-request-send/{userId}', [FriendRequestController::class, 'getIsRequestSent']);
     Route::post('/send-friend-request/{userId}', [FriendRequestController::class, 'sendFriendRequest']);
     Route::patch('/accept-friend-request/{friendRequestId}', [FriendRequestController::class, 'acceptFriendRequest']);
-    Route::get('/friend-list', [UserController::class, 'getFriendList']);
     Route::delete('/friends/{friendId}', [UserController::class, 'removeFriend']);
+    Route::get('/friend-list', [UserController::class, 'getFriendList']);
 
     //profile picture
     Route::post('/users/profile-picture', [UserController::class, 'uploadProfilePicture']);
@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/users', [UserController::class, 'index']);
 
 });
+
 
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);

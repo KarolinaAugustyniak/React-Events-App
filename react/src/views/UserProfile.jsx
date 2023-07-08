@@ -54,18 +54,18 @@ export default function UserProfile() {
                                     <h1>{user.name}</h1>
                                     <p> {user.username}</p>
                                     {user.location && (
-                                        <p>
+                                        <div className="user__location">
                                             <img src={PinIcon} alt="location" />
                                             {user.location}
-                                        </p>
+                                        </div>
                                     )}
                                 </div>
-                                <FriendRequestButton userId={userId} />
+                                {parseInt(userId) !== user.id && <FriendRequestButton userId={userId} />}
                             </div>
-                            <p> {user.description}</p>
+                            <p className="user__bio"> {user.description}</p>
                         </div>
                     </div>
-                    <FriendList />
+                    <FriendList userId={user.id} />
                 </div>
                 <FavoriteEvents userId={user.id} />
             </div>
